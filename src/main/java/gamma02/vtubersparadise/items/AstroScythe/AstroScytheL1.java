@@ -1,12 +1,23 @@
 package gamma02.vtubersparadise.items.AstroScythe;
 
+import com.sun.istack.internal.NotNull;
+import gamma02.vtubersparadise.VTubersParadise;
 import gamma02.vtubersparadise.items.IExtendedReach;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.SwordItem;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeMod;
+import org.openjdk.nashorn.internal.runtime.regexp.joni.Warnings;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Objects;
 
 public class AstroScytheL1 extends SwordItem implements IExtendedReach
 {
@@ -15,19 +26,41 @@ public class AstroScytheL1 extends SwordItem implements IExtendedReach
         super(tier, attackDamageIn, attackSpeedIn, builderIn);
     }
 
-    @Override public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot,
+    @ParametersAreNonnullByDefault
+    @Override
+    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot,
             boolean isSelected)
     {
-        if(isSelected && entityIn instanceof PlayerEntity){
+        if(entityIn instanceof PlayerEntity){
             PlayerEntity player = (PlayerEntity) entityIn;
-            player.getAttribute(PlayerEntity.)
-        }
 
-        super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+            if (player.getHeldItemMainhand().getItem() instanceof AstroScytheL1)
+            {
+                Objects.requireNonNull(player.getAttribute(ForgeMod.REACH_DISTANCE.get())).setBaseValue(6);
+            } else
+            {
+                Objects.requireNonNull(player.getAttribute(ForgeMod.REACH_DISTANCE.get())).setBaseValue(5);
+            }
+
+        }
     }
 
     @Override public double getCustomReach()
     {
         return 6;
     }
+
+
+
+    @Override
+    public boolean hitEntity( ItemStack stack, LivingEntity target, LivingEntity attacker)
+    {
+        if(target.getHeldItemMainhand().getItem() == Items.SHIELD){
+            target.getHeldItemMainhand().setCount(0);
+        }else if(target.getHeldItemOffhand().getItem() == Items.SHIELD){
+            target.getHeldItemOffhand().setCount(0);
+        }
+        return attacker.canAttack(target);
+    }
 }
+

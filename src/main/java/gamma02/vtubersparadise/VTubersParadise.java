@@ -2,6 +2,9 @@ package gamma02.vtubersparadise;
 
 import gamma02.vtubersparadise.entities.HellTrident.*;
 import gamma02.vtubersparadise.entities.SlimeballProjectile;
+import gamma02.vtubersparadise.items.AstroScythe.AstroScytheL1;
+import gamma02.vtubersparadise.items.AstroScythe.AstroScytheL2;
+import gamma02.vtubersparadise.items.AstroScythe.AstroScytheL3;
 import gamma02.vtubersparadise.items.HellTrident.HellTridentL1;
 import gamma02.vtubersparadise.items.HellTrident.HellTridentL2;
 import gamma02.vtubersparadise.items.HellTrident.HellTridentL3;
@@ -67,6 +70,15 @@ public class VTubersParadise
     public static final RegistryObject<Item> HELL_TRIDENT_L1 = Items.register("hell_trident_l1", () -> new HellTridentL1(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
     public static final RegistryObject<Item> HELL_TRIDENT_L2 = Items.register("hell_trident_l2", () -> new HellTridentL2(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
     public static final RegistryObject<Item> HELL_TRIDENT_L3 = Items.register("hell_trident_l3", () -> new HellTridentL3(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> ASTRO_SCYTHE_L1 = Items.register("astro_scythe_l1", () -> new AstroScytheL1(
+            ItemTier.NETHERITE, 5, 1f,
+            new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> ASTRO_SCYTHE_L2 = Items.register("astro_scythe_l2", () -> new AstroScytheL2(
+            ItemTier.NETHERITE, 8, 1.5f,
+            new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> ASTRO_SCYTHE_L3 = Items.register("astro_scythe_l3", () -> new AstroScytheL3(
+            ItemTier.NETHERITE, 11, 1.5f,
+            new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
 
     public static final DeferredRegister<EntityType<?>> EntityType = DeferredRegister.create(ForgeRegistries.ENTITIES, "vtubersparadise");
     public static final RegistryObject<EntityType<SlimeballProjectile>> SLIME_PROJECTILE = EntityType.register("slime_projectile", () -> net.minecraft.entity.EntityType.Builder.<SlimeballProjectile>create(SlimeballProjectile::new, EntityClassification.AMBIENT).size(0.5F, 0.9F).build("vtubersparadise"));
