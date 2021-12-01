@@ -5,6 +5,9 @@ import gamma02.vtubersparadise.entities.SlimeballProjectile;
 import gamma02.vtubersparadise.items.AstroScythe.AstroScytheL1;
 import gamma02.vtubersparadise.items.AstroScythe.AstroScytheL2;
 import gamma02.vtubersparadise.items.AstroScythe.AstroScytheL3;
+import gamma02.vtubersparadise.items.FireKatana.FireKatanaL1;
+import gamma02.vtubersparadise.items.FireKatana.FireKatanaL2;
+import gamma02.vtubersparadise.items.FireKatana.FireKatanaL3;
 import gamma02.vtubersparadise.items.HellTrident.HellTridentL1;
 import gamma02.vtubersparadise.items.HellTrident.HellTridentL2;
 import gamma02.vtubersparadise.items.HellTrident.HellTridentL3;
@@ -16,11 +19,14 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.SpriteRenderer;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemTier;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
@@ -38,6 +44,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.ObjectHolder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.system.CallbackI;
@@ -79,10 +86,19 @@ public class VTubersParadise
     public static final RegistryObject<Item> ASTRO_SCYTHE_L3 = Items.register("astro_scythe_l3", () -> new AstroScytheL3(
             ItemTier.NETHERITE, 11, 1.5f,
             new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> FIRE_KATANA_L1 = Items.register("fire_katana_l1", () -> new FireKatanaL1(
+            ItemTier.NETHERITE, 3, 1.5f,
+            new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> FIRE_KATANA_L2 = Items.register("fire_katana_l2", () -> new FireKatanaL2(
+            ItemTier.NETHERITE, 6, 1.5f,
+            new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> FIRE_KATANA_L3 = Items.register("fire_katana_l3", () -> new FireKatanaL3(
+            ItemTier.NETHERITE, 8, 1.5f,
+            new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
 
     public static final DeferredRegister<EntityType<?>> EntityType = DeferredRegister.create(ForgeRegistries.ENTITIES, "vtubersparadise");
     public static final RegistryObject<EntityType<SlimeballProjectile>> SLIME_PROJECTILE = EntityType.register("slime_projectile", () -> net.minecraft.entity.EntityType.Builder.<SlimeballProjectile>create(SlimeballProjectile::new, EntityClassification.AMBIENT).size(0.5F, 0.9F).build("vtubersparadise"));
-    public static final RegistryObject<EntityType<HellTridentEntityL1>> HELL_TRIDENT_ENTITY_L1 = EntityType.register("hell_trident_entity_l1", () -> net.minecraft.entity.EntityType.Builder.<HellTridentEntityL1>create(HellTridentEntityL1::new, EntityClassification.AMBIENT).size(0.5F, 0.9F).build("vtubersparadise"));
+
     public static final RegistryObject<EntityType<HellTridentEntityL2>> HELL_TRIDENT_ENTITY_L2 = EntityType.register("hell_trident_entity_l2", () -> net.minecraft.entity.EntityType.Builder.<HellTridentEntityL2>create(HellTridentEntityL2::new, EntityClassification.AMBIENT).size(0.5F, 0.9F).build("vtubersparadise"));
     public static final RegistryObject<EntityType<HellTridentEntityL3>> HELL_TRIDENT_ENTITY_L3 = EntityType.register("hell_trident_entity_l3", () -> net.minecraft.entity.EntityType.Builder.<HellTridentEntityL3>create(HellTridentEntityL3::new, EntityClassification.AMBIENT).size(0.5F, 0.9F).build("vtubersparadise"));
 
@@ -107,9 +123,8 @@ public class VTubersParadise
 
 
 
-    @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
-    public static void registerRenderers(final FMLClientSetupEvent event)
+    public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event)
     {
 
     }
@@ -161,4 +176,5 @@ public class VTubersParadise
             LOGGER.info("HELLO from Register Block");
         }
     }
+
 }

@@ -1,12 +1,8 @@
 package gamma02.vtubersparadise.items.AstroScythe;
 
-import com.sun.istack.internal.NotNull;
-import gamma02.vtubersparadise.VTubersParadise;
 import gamma02.vtubersparadise.items.IExtendedReach;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
@@ -14,7 +10,6 @@ import net.minecraft.item.Items;
 import net.minecraft.item.SwordItem;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeMod;
-import org.openjdk.nashorn.internal.runtime.regexp.joni.Warnings;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Objects;

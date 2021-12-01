@@ -1,5 +1,7 @@
 package gamma02.vtubersparadise.entities.HellTrident;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.util.ResourceLocation;
@@ -27,4 +29,6 @@ public class HellTridentModel extends AnimatedGeoModel<HellTridentEntityL1>
     {
         return new ResourceLocation("vtubersparadise", "animations/sodatrident.animation.json");
     }
+
+
 }

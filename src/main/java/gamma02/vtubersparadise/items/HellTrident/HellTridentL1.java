@@ -58,6 +58,7 @@ public class HellTridentL1 extends Item implements IVanishable
      * Called when the player stops using an Item (stops holding the right mouse button).
      */
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
+
         System.out.println("yes I stopped");
         if (entityLiving instanceof PlayerEntity) {
             PlayerEntity playerentity = (PlayerEntity)entityLiving;
@@ -126,7 +127,10 @@ public class HellTridentL1 extends Item implements IVanishable
      */
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         System.out.println("useItem lol");
-        this.onPlayerStoppedUsing(playerIn.getHeldItem(handIn), worldIn, playerIn, 10);
+        HellTridentEntityL1 en = new HellTridentEntityL1(worldIn, playerIn, playerIn.getHeldItem(handIn));
+
+        worldIn.addEntity(en);
+        en.setDirectionAndMovement(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 2.5F * 0.5F, 1.0F);
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
 

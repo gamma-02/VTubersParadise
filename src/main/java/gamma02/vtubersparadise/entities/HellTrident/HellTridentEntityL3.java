@@ -4,11 +4,13 @@ import gamma02.vtubersparadise.VTubersParadise;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -34,7 +36,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 
-public class HellTridentEntityL3 extends AbstractArrowEntity implements IAnimatable
+public class HellTridentEntityL3 extends TridentEntity
 {
     private static final DataParameter<Byte> LOYALTY_LEVEL = EntityDataManager.createKey(
             net.minecraft.entity.projectile.TridentEntity.class, DataSerializers.BYTE);
@@ -43,14 +45,14 @@ public class HellTridentEntityL3 extends AbstractArrowEntity implements IAnimata
     private ItemStack thrownStack = new ItemStack(VTubersParadise.HELL_TRIDENT_L3.get());
     private boolean dealtDamage;
     public int returningTicks;
-    private AnimationFactory factory = new AnimationFactory(this);
+
 
     public HellTridentEntityL3(EntityType<? extends HellTridentEntityL3> type, World worldIn) {
         super(type, worldIn);
     }
 
     public HellTridentEntityL3(World worldIn, LivingEntity thrower, ItemStack thrownStackIn) {
-        super(VTubersParadise.HELL_TRIDENT_ENTITY_L3.get(), thrower, worldIn);
+        super(worldIn, thrower, thrownStackIn);
         this.thrownStack = thrownStackIn.copy();
         this.dataManager.set(LOYALTY_LEVEL, (byte) 3);
         this.dataManager.set(field_226571_aq_, thrownStackIn.hasEffect());
@@ -58,7 +60,7 @@ public class HellTridentEntityL3 extends AbstractArrowEntity implements IAnimata
 
     @OnlyIn(Dist.CLIENT)
     public HellTridentEntityL3(World worldIn, double x, double y, double z) {
-        super(VTubersParadise.HELL_TRIDENT_ENTITY_L3.get(), x, y, z, worldIn);
+        super(worldIn, x, y, z);
     }
 
     protected void registerData() {
@@ -236,14 +238,5 @@ public class HellTridentEntityL3 extends AbstractArrowEntity implements IAnimata
         return PlayState.CONTINUE;
     }
 
-    @Override public void registerControllers(AnimationData data)
-    {
-        data.addAnimationController(new AnimationController(this, "controller", 0, this::predicate));
 
-    }
-
-    @Override public AnimationFactory getFactory()
-    {
-        return this.factory;
-    }
 }

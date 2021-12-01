@@ -1,18 +1,23 @@
 package gamma02.vtubersparadise.entities.HellTrident;
 
 import gamma02.vtubersparadise.VTubersParadise;
+import gamma02.vtubersparadise.entities.ModEntities;
+import gamma02.vtubersparadise.items.HellTrident.HellTridentL1;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -27,6 +32,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.network.FMLPlayMessages;
+import net.minecraftforge.fml.network.NetworkHooks;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -54,15 +61,15 @@ public class HellTridentEntityL1 extends AbstractArrowEntity implements IAnimata
     }
 
     public HellTridentEntityL1(World worldIn, LivingEntity thrower, ItemStack thrownStackIn) {
-        super(VTubersParadise.HELL_TRIDENT_ENTITY_L1.get(), thrower, worldIn);
+        super(ModEntities.HELL_TRIDENT_ENTITY_L1, thrower, worldIn);
         this.thrownStack = thrownStackIn.copy();
-        this.dataManager.set(LOYALTY_LEVEL, (byte) EnchantmentHelper.getLoyaltyModifier(thrownStackIn));
+        this.dataManager.set(LOYALTY_LEVEL, (byte)EnchantmentHelper.getLoyaltyModifier(thrownStackIn));
         this.dataManager.set(field_226571_aq_, thrownStackIn.hasEffect());
     }
 
     @OnlyIn(Dist.CLIENT)
     public HellTridentEntityL1(World worldIn, double x, double y, double z) {
-        super(VTubersParadise.HELL_TRIDENT_ENTITY_L1.get(), x, y, z, worldIn);
+        super(ModEntities.HELL_TRIDENT_ENTITY_L1, x, y, z, worldIn);
     }
 
     protected void registerData() {
@@ -216,12 +223,6 @@ public class HellTridentEntityL1 extends AbstractArrowEntity implements IAnimata
     }
 
 
-
-    @Override public void setItemStackToSlot(EquipmentSlotType slotIn, ItemStack stack)
-    {
-
-    }
-
     public void writeAdditional(CompoundNBT compound) {
         super.writeAdditional(compound);
         compound.put("Trident", this.thrownStack.write(new CompoundNBT()));
@@ -259,5 +260,23 @@ public class HellTridentEntityL1 extends AbstractArrowEntity implements IAnimata
     @Override public AnimationFactory getFactory()
     {
         return this.factory;
+    }
+
+     public ItemStack getItem()
+    {
+        return VTubersParadise.HELL_TRIDENT_L1.get().getDefaultInstance();
+    }
+    @Override
+    public EntityType<?> getType() {
+        return ModEntities.HELL_TRIDENT_ENTITY_L1;
+    }
+
+    @Override
+    public IPacket<?> createSpawnPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
+    }
+
+    public HellTridentEntityL1(FMLPlayMessages.SpawnEntity packet, World world) {
+        super(ModEntities.HELL_TRIDENT_ENTITY_L1, world);
     }
 }
