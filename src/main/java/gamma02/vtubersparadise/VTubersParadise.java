@@ -11,6 +11,8 @@ import gamma02.vtubersparadise.items.FireKatana.FireKatanaL3;
 import gamma02.vtubersparadise.items.HellTrident.HellTridentL1;
 import gamma02.vtubersparadise.items.HellTrident.HellTridentL2;
 import gamma02.vtubersparadise.items.HellTrident.HellTridentL3;
+import gamma02.vtubersparadise.items.NeonBlade.NeonBladeL1;
+import gamma02.vtubersparadise.items.NeonBlade.NeonBladeL2;
 import gamma02.vtubersparadise.items.SlimeSword.SlimeSwordL1;
 import gamma02.vtubersparadise.items.SlimeSword.SlimeSwordL2;
 import gamma02.vtubersparadise.items.SlimeSword.SlimeSwordL3;
@@ -77,6 +79,9 @@ public class VTubersParadise
     public static final RegistryObject<Item> HELL_TRIDENT_L1 = Items.register("hell_trident_l1", () -> new HellTridentL1(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
     public static final RegistryObject<Item> HELL_TRIDENT_L2 = Items.register("hell_trident_l2", () -> new HellTridentL2(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
     public static final RegistryObject<Item> HELL_TRIDENT_L3 = Items.register("hell_trident_l3", () -> new HellTridentL3(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> NEON_BLADE_L1 = Items.register("neon_sword_l1", () -> new NeonBladeL1(ItemTier.NETHERITE, 4, 1.5f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> NEON_BLADE_L2 = Items.register("neon_sword_l1", () -> new NeonBladeL2(ItemTier.NETHERITE, 6, 1.5f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
+
     public static final RegistryObject<Item> ASTRO_SCYTHE_L1 = Items.register("astro_scythe_l1", () -> new AstroScytheL1(
             ItemTier.NETHERITE, 5, 1f,
             new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));

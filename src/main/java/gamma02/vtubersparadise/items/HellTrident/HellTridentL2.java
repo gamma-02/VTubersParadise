@@ -50,7 +50,8 @@ public class HellTridentL2 extends Item implements IVanishable
     /**
      * How long it takes to use or consume an item
      */
-    public int getUseDuration(ItemStack stack) {
+    @Override public int getUseDuration(ItemStack stack)
+    {
         return 72000;
     }
 
@@ -58,6 +59,7 @@ public class HellTridentL2 extends Item implements IVanishable
      * Called when the player stops using an Item (stops holding the right mouse button).
      */
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
+        System.out.println("yes I let go fuck you");
         if (entityLiving instanceof PlayerEntity) {
             PlayerEntity playerentity = (PlayerEntity)entityLiving;
             int i = this.getUseDuration(stack) - timeLeft;
@@ -122,7 +124,7 @@ public class HellTridentL2 extends Item implements IVanishable
      */
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         System.out.println("useItem lol");
-        this.onPlayerStoppedUsing(playerIn.getHeldItem(handIn), worldIn, playerIn, 10);
+        playerIn.setActiveHand(handIn);
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
 
@@ -131,21 +133,20 @@ public class HellTridentL2 extends Item implements IVanishable
      * the damage on the stack.
      */
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damageItem(1, attacker, (entity) -> {
-            entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-        });
+
         return true;
+    }
+
+    @Override public void onUsingTick(ItemStack stack, LivingEntity player, int count)
+    {//possible brute force lmfao - yep nope dont need awh;awefjhlaskdjhjfsjawejlw ehehe
+        super.onUsingTick(stack, player, count);
     }
 
     /**
      * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
      */
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
-        if ((double)state.getBlockHardness(worldIn, pos) != 0.0D) {
-            stack.damageItem(2, entityLiving, (entity) -> {
-                entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-            });
-        }
+
 
         return true;
     }

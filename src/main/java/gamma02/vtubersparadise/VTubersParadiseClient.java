@@ -4,6 +4,7 @@ import gamma02.vtubersparadise.entities.HellTrident.Renderer;
 import gamma02.vtubersparadise.entities.HellTrident.Renderer2;
 import gamma02.vtubersparadise.entities.HellTrident.Renderer3;
 import gamma02.vtubersparadise.entities.ModEntities;
+import gamma02.vtubersparadise.entities.NeonSwordEntity.NeonSpearRender;
 import net.minecraft.client.renderer.entity.TridentRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -20,7 +21,8 @@ public class VTubersParadiseClient
     public static void register(final FMLClientSetupEvent event) {
         System.out.println("registering");
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.HELL_TRIDENT_ENTITY_L1, Renderer::new);
-//        RenderingRegistry.registerEntityRenderingHandler(VTubersParadise.HELL_TRIDENT_ENTITY_L2.get(), Renderer2::new);
-//        RenderingRegistry.registerEntityRenderingHandler(VTubersParadise.HELL_TRIDENT_ENTITY_L3.get(), Renderer3::new);
+        RenderingRegistry.registerEntityRenderingHandler(VTubersParadise.HELL_TRIDENT_ENTITY_L2.get(), Renderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(VTubersParadise.HELL_TRIDENT_ENTITY_L3.get(), Renderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.NEON_SWORD_ENTITY, NeonSpearRender::new);
     }
 }

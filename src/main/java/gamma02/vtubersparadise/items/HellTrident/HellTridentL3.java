@@ -3,6 +3,7 @@ package gamma02.vtubersparadise.items.HellTrident;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import gamma02.vtubersparadise.entities.HellTrident.HellTridentEntityL2;
+import gamma02.vtubersparadise.entities.HellTrident.HellTridentEntityL3;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.IVanishable;
@@ -44,11 +45,19 @@ public class HellTridentL3 extends TridentItem
     /**
      * returns the action that specifies what animation to play when the items is being used
      */
-
+    @Override public UseAction getUseAction(ItemStack stack)
+    {
+        return UseAction.SPEAR;
+    }
 
     /**
      * How long it takes to use or consume an item
      */
+
+    @Override public int getUseDuration(ItemStack stack)
+    {
+        return 72000;
+    }
 
     /**
      * Called when the player stops using an Item (stops holding the right mouse button).
@@ -62,7 +71,7 @@ public class HellTridentL3 extends TridentItem
                 if (j <= 0 || playerentity.isWet()) {
                     if (!worldIn.isRemote) {
                         if (j == 0) {
-                            HellTridentEntityL2 tridententity = new HellTridentEntityL2(worldIn, playerentity, stack);
+                            HellTridentEntityL3 tridententity = new HellTridentEntityL3(worldIn, playerentity, stack);
                             tridententity.setDirectionAndMovement(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, 2.5F + (float)j * 0.5F, 1.0F);
                             if (playerentity.abilities.isCreativeMode) {
                                 tridententity.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
@@ -118,14 +127,10 @@ public class HellTridentL3 extends TridentItem
      */
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         System.out.println("useItem lol");
-        this.onPlayerStoppedUsing(playerIn.getHeldItem(handIn), worldIn, playerIn, 10);
+        playerIn.setActiveHand(handIn);
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
 
-    /**
-     * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
-     * the damage on the stack.
-     */
 
 
     /**

@@ -36,7 +36,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 
-public class HellTridentEntityL2 extends TridentEntity
+public class HellTridentEntityL2 extends HellTridentEntityL1
 {
     private static final DataParameter<Byte> LOYALTY_LEVEL = EntityDataManager.createKey(
             net.minecraft.entity.projectile.TridentEntity.class, DataSerializers.BYTE);
@@ -168,20 +168,7 @@ public class HellTridentEntityL2 extends TridentEntity
         }
 
         this.setMotion(this.getMotion().mul(-0.01D, -0.1D, -0.01D));
-        float f1 = 1.0F;
-        if (this.world instanceof ServerWorld && this.world.isThundering()) {
-            BlockPos blockpos = entity.getPosition();
-            if (this.world.canSeeSky(blockpos)) {
-                LightningBoltEntity lightningboltentity = EntityType.LIGHTNING_BOLT.create(this.world);
-                lightningboltentity.moveForced(Vector3d.copyCenteredHorizontally(blockpos));
-                lightningboltentity.setCaster(entity1 instanceof ServerPlayerEntity ? (ServerPlayerEntity)entity1 : null);
-                this.world.addEntity(lightningboltentity);
-                soundevent = SoundEvents.ITEM_TRIDENT_THUNDER;
-                f1 = 5.0F;
-            }
-        }
 
-        this.playSound(soundevent, f1, 1.0F);
     }
 
     /**

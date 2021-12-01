@@ -23,6 +23,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 public class HellTridentL1 extends Item implements IVanishable
 {
@@ -43,14 +44,17 @@ public class HellTridentL1 extends Item implements IVanishable
     /**
      * returns the action that specifies what animation to play when the items is being used
      */
-    public UseAction getUseAction(ItemStack stack) {
+    @Override public @NotNull UseAction getUseAction(ItemStack stack)
+    {
         return UseAction.SPEAR;
     }
 
     /**
      * How long it takes to use or consume an item
      */
-    public int getUseDuration(ItemStack stack) {
+
+    @Override public int getUseDuration(ItemStack stack)
+    {
         return 72000;
     }
 
@@ -127,10 +131,7 @@ public class HellTridentL1 extends Item implements IVanishable
      */
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         System.out.println("useItem lol");
-        HellTridentEntityL1 en = new HellTridentEntityL1(worldIn, playerIn, playerIn.getHeldItem(handIn));
-
-        worldIn.addEntity(en);
-        en.setDirectionAndMovement(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 2.5F * 0.5F, 1.0F);
+        playerIn.setActiveHand(handIn);
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
 

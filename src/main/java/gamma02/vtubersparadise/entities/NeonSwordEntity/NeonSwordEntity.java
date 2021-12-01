@@ -1,18 +1,18 @@
-package gamma02.vtubersparadise.entities.HellTrident;
+package gamma02.vtubersparadise.entities.NeonSwordEntity;
 
 import gamma02.vtubersparadise.VTubersParadise;
+import gamma02.vtubersparadise.entities.ModEntities;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -26,6 +26,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.network.FMLPlayMessages;
+import net.minecraftforge.fml.network.NetworkHooks;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -36,36 +38,37 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 
-public class HellTridentEntityL3 extends HellTridentEntityL1
+public class NeonSwordEntity extends AbstractArrowEntity implements IAnimatable
 {
     private static final DataParameter<Byte> LOYALTY_LEVEL = EntityDataManager.createKey(
             net.minecraft.entity.projectile.TridentEntity.class, DataSerializers.BYTE);
     private static final DataParameter<Boolean> field_226571_aq_ = EntityDataManager.createKey(
             net.minecraft.entity.projectile.TridentEntity.class, DataSerializers.BOOLEAN);
-    private ItemStack thrownStack = new ItemStack(VTubersParadise.HELL_TRIDENT_L3.get());
+    private ItemStack thrownStack = new ItemStack(VTubersParadise.HELL_TRIDENT_L1.get());
     private boolean dealtDamage;
     public int returningTicks;
+    private AnimationFactory factory = new AnimationFactory(this);
 
 
-    public HellTridentEntityL3(EntityType<? extends HellTridentEntityL3> type, World worldIn) {
+    public NeonSwordEntity(EntityType<? extends NeonSwordEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
-    public HellTridentEntityL3(World worldIn, LivingEntity thrower, ItemStack thrownStackIn) {
-        super(worldIn, thrower, thrownStackIn);
+    public NeonSwordEntity(World worldIn, LivingEntity thrower, ItemStack thrownStackIn) {
+        super(ModEntities.HELL_TRIDENT_ENTITY_L1, thrower, worldIn);
         this.thrownStack = thrownStackIn.copy();
-        this.dataManager.set(LOYALTY_LEVEL, (byte) 3);
+        this.dataManager.set(LOYALTY_LEVEL, (byte) EnchantmentHelper.getLoyaltyModifier(thrownStackIn));
         this.dataManager.set(field_226571_aq_, thrownStackIn.hasEffect());
     }
 
     @OnlyIn(Dist.CLIENT)
-    public HellTridentEntityL3(World worldIn, double x, double y, double z) {
-        super(worldIn, x, y, z);
+    public NeonSwordEntity(World worldIn, double x, double y, double z) {
+        super(ModEntities.HELL_TRIDENT_ENTITY_L1, x, y, z, worldIn);
     }
 
     protected void registerData() {
         super.registerData();
-        this.dataManager.register(LOYALTY_LEVEL, (byte)3);
+        this.dataManager.register(LOYALTY_LEVEL, (byte)0);
         this.dataManager.register(field_226571_aq_, false);
     }
 
@@ -107,6 +110,8 @@ public class HellTridentEntityL3 extends HellTridentEntityL1
         super.tick();
     }
 
+
+
     private boolean shouldReturnToThrower() {
         Entity entity = this.getShooter();
         if (entity != null && entity.isAlive()) {
@@ -137,11 +142,8 @@ public class HellTridentEntityL3 extends HellTridentEntityL1
      * Called when the arrow hits an entity
      */
     protected void onEntityHit(EntityRayTraceResult result) {
-        if(result.getEntity().world.isThundering()){
-            result.getEntity().world.addEntity(new LightningBoltEntity(EntityType.LIGHTNING_BOLT,result.getEntity().world ));
-        }
         Entity entity = result.getEntity();
-        float f = 9.0F;
+        float f = 4.0F;
         if (entity instanceof LivingEntity) {
             LivingEntity livingentity = (LivingEntity)entity;
             f += EnchantmentHelper.getModifierForCreature(this.thrownStack, livingentity.getCreatureAttribute());
@@ -169,7 +171,7 @@ public class HellTridentEntityL3 extends HellTridentEntityL1
 
         this.setMotion(this.getMotion().mul(-0.01D, -0.1D, -0.01D));
         float f1 = 1.0F;
-        if (this.world instanceof ServerWorld && this.world.isThundering() && true) {
+        if (this.world instanceof ServerWorld && this.world.isThundering() && EnchantmentHelper.hasChanneling(this.thrownStack)) {
             BlockPos blockpos = entity.getPosition();
             if (this.world.canSeeSky(blockpos)) {
                 LightningBoltEntity lightningboltentity = EntityType.LIGHTNING_BOLT.create(this.world);
@@ -211,8 +213,9 @@ public class HellTridentEntityL3 extends HellTridentEntityL1
         }
 
         this.dealtDamage = compound.getBoolean("DealtDamage");
-        this.dataManager.set(LOYALTY_LEVEL, (byte)3);
+        this.dataManager.set(LOYALTY_LEVEL, (byte)EnchantmentHelper.getLoyaltyModifier(this.thrownStack));
     }
+
 
     public void writeAdditional(CompoundNBT compound) {
         super.writeAdditional(compound);
@@ -229,14 +232,45 @@ public class HellTridentEntityL3 extends HellTridentEntityL1
     }
 
     protected float getWaterDrag() {
-        return 0F;
+        return 0.99F;
     }
 
+    @OnlyIn(Dist.CLIENT)
+    public boolean isInRangeToRender3d(double x, double y, double z) {
+        return true;
+    }
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.sodatrident.none", true));
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.none", true));
         return PlayState.CONTINUE;
     }
 
+    @Override public void registerControllers(AnimationData data)
+    {
+        data.addAnimationController(new AnimationController(this, "controller", 0, this::predicate));
 
+    }
+
+    @Override public AnimationFactory getFactory()
+    {
+        return this.factory;
+    }
+
+    public ItemStack getItem()
+    {
+        return VTubersParadise.HELL_TRIDENT_L1.get().getDefaultInstance();
+    }
+    @Override
+    public EntityType<?> getType() {
+        return ModEntities.HELL_TRIDENT_ENTITY_L1;
+    }
+
+    @Override
+    public IPacket<?> createSpawnPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
+    }
+
+    public NeonSwordEntity(FMLPlayMessages.SpawnEntity packet, World world) {
+        super(ModEntities.HELL_TRIDENT_ENTITY_L1, world);
+    }
 }
