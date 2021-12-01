@@ -1,5 +1,6 @@
 package gamma02.vtubersparadise;
 
+import gamma02.vtubersparadise.entities.EchoTrident.EchoTridentRender;
 import gamma02.vtubersparadise.entities.HellTrident.Renderer;
 import gamma02.vtubersparadise.entities.HellTrident.Renderer2;
 import gamma02.vtubersparadise.entities.HellTrident.Renderer3;
@@ -24,5 +25,7 @@ public class VTubersParadiseClient
         RenderingRegistry.registerEntityRenderingHandler(VTubersParadise.HELL_TRIDENT_ENTITY_L2.get(), Renderer::new);
         RenderingRegistry.registerEntityRenderingHandler(VTubersParadise.HELL_TRIDENT_ENTITY_L3.get(), Renderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.NEON_SWORD_ENTITY, NeonSpearRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.ECHO_TRIDENT_ENTITY_L1, EchoTridentRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.ECHO_TRIDENT_ENTITY_L2, EchoTridentRender::new);
     }
 }

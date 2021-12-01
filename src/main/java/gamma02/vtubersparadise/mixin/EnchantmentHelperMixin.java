@@ -1,6 +1,7 @@
 package gamma02.vtubersparadise.mixin;
 
 import gamma02.vtubersparadise.VTubersParadise;
+import gamma02.vtubersparadise.items.ISweepingNoEnchant;
 import gamma02.vtubersparadise.items.NeonBlade.NeonBladeL1;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -23,7 +24,7 @@ public class EnchantmentHelperMixin
     @Overwrite(remap = false)
     public static float getSweepingDamageRatio(LivingEntity entityIn) {
         int i = getMaxEnchantmentLevel(Enchantments.SWEEPING, entityIn);
-        if(entityIn.getHeldItemMainhand().getItem() instanceof NeonBladeL1){
+        if(entityIn.getHeldItemMainhand().getItem() instanceof ISweepingNoEnchant){
             i = 10;
         }
         return i > 0 ? SweepingEnchantment.getSweepingDamageRatio(i) : 0.0F;

@@ -15,7 +15,7 @@ import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
 public class NeonSpearRender extends GeoProjectilesRenderer<NeonSwordEntity>
 {
 
-    public static final ResourceLocation TRIDENT = new ResourceLocation(VTubersParadise.ModID, "textures/item/soda1.png");
+    public static final ResourceLocation TRIDENT = new ResourceLocation(VTubersParadise.ModID, "textures/item/pixel1.png");
     private static final NeonSwordModel tridentModel = new NeonSwordModel();
 
     public NeonSpearRender(EntityRendererManager renderManagerIn)

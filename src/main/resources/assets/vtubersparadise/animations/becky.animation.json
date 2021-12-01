@@ -1,0 +1,21 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.becky.draw": {
+			"animation_length": 0.5,
+			"bones": {
+				"group2": {
+					"scale": {
+						"0.0": {
+							"vector": [1, 1, 1]
+						},
+						"0.5": {
+							"vector": [3, 3, 3],
+							"easing": "easeInOutCirc"
+						}
+					}
+				}
+			}
+		}
+	}
+}

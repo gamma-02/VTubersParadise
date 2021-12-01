@@ -5,6 +5,12 @@ import gamma02.vtubersparadise.entities.SlimeballProjectile;
 import gamma02.vtubersparadise.items.AstroScythe.AstroScytheL1;
 import gamma02.vtubersparadise.items.AstroScythe.AstroScytheL2;
 import gamma02.vtubersparadise.items.AstroScythe.AstroScytheL3;
+import gamma02.vtubersparadise.items.BeckyBow.BeckyBowL1;
+import gamma02.vtubersparadise.items.BeckyBow.BeckyBowL2;
+import gamma02.vtubersparadise.items.BeckyBow.BeckyBowL3;
+import gamma02.vtubersparadise.items.EchoTrident.EchoTridentL1;
+import gamma02.vtubersparadise.items.EchoTrident.EchoTridentL2;
+import gamma02.vtubersparadise.items.EchoTrident.EchoTridentL3;
 import gamma02.vtubersparadise.items.FireKatana.FireKatanaL1;
 import gamma02.vtubersparadise.items.FireKatana.FireKatanaL2;
 import gamma02.vtubersparadise.items.FireKatana.FireKatanaL3;
@@ -14,6 +20,9 @@ import gamma02.vtubersparadise.items.HellTrident.HellTridentL3;
 import gamma02.vtubersparadise.items.NeonBlade.NeonBladeL1;
 import gamma02.vtubersparadise.items.NeonBlade.NeonBladeL2;
 import gamma02.vtubersparadise.items.NeonBlade.NeonBladeL3;
+import gamma02.vtubersparadise.items.ShineSword.ShineSwordL1;
+import gamma02.vtubersparadise.items.ShineSword.ShineSwordL2;
+import gamma02.vtubersparadise.items.ShineSword.ShineSwordL3;
 import gamma02.vtubersparadise.items.SlimeSword.SlimeSwordL1;
 import gamma02.vtubersparadise.items.SlimeSword.SlimeSwordL2;
 import gamma02.vtubersparadise.items.SlimeSword.SlimeSwordL3;
@@ -83,6 +92,17 @@ public class VTubersParadise
     public static final RegistryObject<Item> NEON_BLADE_L1 = Items.register("neon_blade_l1", () -> new NeonBladeL1(ItemTier.NETHERITE, 4, 1.5f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
     public static final RegistryObject<Item> NEON_BLADE_L2 = Items.register("neon_blade_l2", () -> new NeonBladeL2(ItemTier.NETHERITE, 6, 1.5f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
     public static final RegistryObject<Item> NEON_BLADE_L3 = Items.register("neon_blade_l3", () -> new NeonBladeL3(ItemTier.NETHERITE, 8, 1.7f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> ECHO_TRIDENT_L1 = Items.register("echo_trident_l1", () -> new EchoTridentL1(ItemTier.NETHERITE, 3, 1.3f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> ECHO_TRIDENT_L2 = Items.register("echo_trident_l2", () -> new EchoTridentL2(ItemTier.NETHERITE, 5, 1.4f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> ECHO_TRIDENT_L3 = Items.register("echo_trident_l3", () -> new EchoTridentL3(ItemTier.NETHERITE, 7, 1.6f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> SHINE_SWORD_L1 = Items.register("shine_sword_l1", () -> new ShineSwordL1(ItemTier.NETHERITE, 6, 1f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> SHINE_SWORD_L2 = Items.register("shine_sword_l2", () -> new ShineSwordL2(ItemTier.NETHERITE, 8, 1.1f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> SHINE_SWORD_L3 = Items.register("shine_sword_l3", () -> new ShineSwordL3(ItemTier.NETHERITE, 11, 1.2f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> BECKY_BOWL_L1 = Items.register("becky_bow_l1", () -> new BeckyBowL1(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> BECKY_BOWL_L2 = Items.register("becky_bow_l2", () -> new BeckyBowL2(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> BECKY_BOWL_L3 = Items.register("becky_bow_l3", () -> new BeckyBowL3(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+
+
     public static final RegistryObject<Item> ASTRO_SCYTHE_L1 = Items.register("astro_scythe_l1", () -> new AstroScytheL1(
             ItemTier.NETHERITE, 5, 1f,
             new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
