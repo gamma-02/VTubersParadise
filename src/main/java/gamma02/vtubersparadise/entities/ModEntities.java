@@ -28,7 +28,7 @@ public class ModEntities
         {
             HELL_TRIDENT_ENTITY_L1 = build("hell_trident_entity_l1", net.minecraft.entity.EntityType.Builder.<HellTridentEntityL1>create(HellTridentEntityL1::new, EntityClassification.MISC).size(net.minecraft.entity.EntityType.TRIDENT.getWidth(), net.minecraft.entity.EntityType.TRIDENT.getHeight()).setShouldReceiveVelocityUpdates(true).setUpdateInterval(120));
             NEON_SWORD_ENTITY = build("neon_sword_entity", EntityType.Builder.<NeonSwordEntity>create(NeonSwordEntity::new, EntityClassification.MISC).size(EntityType.TRIDENT.getWidth(), EntityType.TRIDENT.getHeight()).setShouldReceiveVelocityUpdates(true).setUpdateInterval(120));
-            event.getRegistry().registerAll(HELL_TRIDENT_ENTITY_L1);
+            event.getRegistry().registerAll(HELL_TRIDENT_ENTITY_L1, NEON_SWORD_ENTITY);
         }
     }
     private static <T extends Entity> EntityType<T> build(final String name, final EntityType.Builder<T> builder) {

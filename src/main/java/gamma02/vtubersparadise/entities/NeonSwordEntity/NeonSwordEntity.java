@@ -44,7 +44,7 @@ public class NeonSwordEntity extends AbstractArrowEntity implements IAnimatable
             net.minecraft.entity.projectile.TridentEntity.class, DataSerializers.BYTE);
     private static final DataParameter<Boolean> field_226571_aq_ = EntityDataManager.createKey(
             net.minecraft.entity.projectile.TridentEntity.class, DataSerializers.BOOLEAN);
-    private ItemStack thrownStack = new ItemStack(VTubersParadise.HELL_TRIDENT_L1.get());
+    private ItemStack thrownStack = new ItemStack(VTubersParadise.NEON_BLADE_L2.get());
     private boolean dealtDamage;
     public int returningTicks;
     private AnimationFactory factory = new AnimationFactory(this);
@@ -55,7 +55,7 @@ public class NeonSwordEntity extends AbstractArrowEntity implements IAnimatable
     }
 
     public NeonSwordEntity(World worldIn, LivingEntity thrower, ItemStack thrownStackIn) {
-        super(ModEntities.HELL_TRIDENT_ENTITY_L1, thrower, worldIn);
+        super(ModEntities.NEON_SWORD_ENTITY, thrower, worldIn);
         this.thrownStack = thrownStackIn.copy();
         this.dataManager.set(LOYALTY_LEVEL, (byte) EnchantmentHelper.getLoyaltyModifier(thrownStackIn));
         this.dataManager.set(field_226571_aq_, thrownStackIn.hasEffect());
@@ -63,7 +63,7 @@ public class NeonSwordEntity extends AbstractArrowEntity implements IAnimatable
 
     @OnlyIn(Dist.CLIENT)
     public NeonSwordEntity(World worldIn, double x, double y, double z) {
-        super(ModEntities.HELL_TRIDENT_ENTITY_L1, x, y, z, worldIn);
+        super(ModEntities.NEON_SWORD_ENTITY, x, y, z, worldIn);
     }
 
     protected void registerData() {
@@ -258,11 +258,11 @@ public class NeonSwordEntity extends AbstractArrowEntity implements IAnimatable
 
     public ItemStack getItem()
     {
-        return VTubersParadise.HELL_TRIDENT_L1.get().getDefaultInstance();
+        return VTubersParadise.NEON_BLADE_L2.get().getDefaultInstance();
     }
     @Override
     public EntityType<?> getType() {
-        return ModEntities.HELL_TRIDENT_ENTITY_L1;
+        return ModEntities.NEON_SWORD_ENTITY;
     }
 
     @Override
@@ -271,6 +271,6 @@ public class NeonSwordEntity extends AbstractArrowEntity implements IAnimatable
     }
 
     public NeonSwordEntity(FMLPlayMessages.SpawnEntity packet, World world) {
-        super(ModEntities.HELL_TRIDENT_ENTITY_L1, world);
+        super(ModEntities.NEON_SWORD_ENTITY, world);
     }
 }
