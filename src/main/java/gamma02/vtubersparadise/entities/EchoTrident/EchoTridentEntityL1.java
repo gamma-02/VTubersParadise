@@ -1,4 +1,6 @@
-package gamma02.vtubersparadise.entities.NeonSwordEntity;
+package gamma02.vtubersparadise.entities.EchoTrident;
+
+
 
 import gamma02.vtubersparadise.VTubersParadise;
 import gamma02.vtubersparadise.entities.ModEntities;
@@ -38,7 +40,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 
-public class NeonSwordEntity extends AbstractArrowEntity implements IAnimatable
+public class EchoTridentEntityL1 extends AbstractArrowEntity implements IAnimatable
 {
     private static final DataParameter<Byte> LOYALTY_LEVEL = EntityDataManager.createKey(
             net.minecraft.entity.projectile.TridentEntity.class, DataSerializers.BYTE);
@@ -50,21 +52,23 @@ public class NeonSwordEntity extends AbstractArrowEntity implements IAnimatable
     private AnimationFactory factory = new AnimationFactory(this);
 
 
-    public NeonSwordEntity(EntityType<? extends NeonSwordEntity> type, World worldIn) {
+    public EchoTridentEntityL1(EntityType<? extends EchoTridentEntityL1> type, World worldIn) {
         super(type, worldIn);
     }
 
-    public NeonSwordEntity(World worldIn, LivingEntity thrower, ItemStack thrownStackIn) {
-        super(ModEntities.NEON_SWORD_ENTITY, thrower, worldIn);
+    public EchoTridentEntityL1(World worldIn, LivingEntity thrower, ItemStack thrownStackIn) {
+        super(ModEntities.ECHO_TRIDENT_ENTITY_L1, thrower, worldIn);
         this.thrownStack = thrownStackIn.copy();
         this.dataManager.set(LOYALTY_LEVEL, (byte) EnchantmentHelper.getLoyaltyModifier(thrownStackIn));
         this.dataManager.set(field_226571_aq_, thrownStackIn.hasEffect());
     }
 
     @OnlyIn(Dist.CLIENT)
-    public NeonSwordEntity(World worldIn, double x, double y, double z) {
-        super(ModEntities.NEON_SWORD_ENTITY, x, y, z, worldIn);
+    public EchoTridentEntityL1(World worldIn, double x, double y, double z) {
+        super(ModEntities.ECHO_TRIDENT_ENTITY_L1, x, y, z, worldIn);
     }
+
+
 
     protected void registerData() {
         super.registerData();
@@ -272,8 +276,8 @@ public class NeonSwordEntity extends AbstractArrowEntity implements IAnimatable
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    public NeonSwordEntity(FMLPlayMessages.SpawnEntity packet, World world) {
-        super(ModEntities.NEON_SWORD_ENTITY, world);
+    public EchoTridentEntityL1(FMLPlayMessages.SpawnEntity packet, World world) {
+        super(ModEntities.ECHO_TRIDENT_ENTITY_L1, world);
     }
 
 
