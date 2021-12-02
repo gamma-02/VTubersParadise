@@ -5,7 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "VTubersParadise.refmap.json",
   "mixins": [
-    "EnchantmentHelperMixin"
+
   ],
   "injectors": {
     "defaultRequire": 1
