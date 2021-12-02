@@ -32,7 +32,7 @@ public class HellTridentL2 extends Item implements IVanishable
         super(builderIn);
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", 5.0D, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double)-1.9F, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double)1.3F, AttributeModifier.Operation.ADDITION));
         this.tridentAttributes = builder.build();
     }
 
@@ -59,7 +59,7 @@ public class HellTridentL2 extends Item implements IVanishable
      * Called when the player stops using an Item (stops holding the right mouse button).
      */
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
-        System.out.println("yes I let go fuck you");
+
         if (entityLiving instanceof PlayerEntity) {
             PlayerEntity playerentity = (PlayerEntity)entityLiving;
             int i = this.getUseDuration(stack) - timeLeft;
@@ -123,7 +123,7 @@ public class HellTridentL2 extends Item implements IVanishable
      * {@link #onItemUse}.
      */
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        System.out.println("useItem lol");
+
         playerIn.setActiveHand(handIn);
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }

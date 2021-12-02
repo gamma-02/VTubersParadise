@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#D#",
+        "nVn",
+        "#D#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:phantom_membrane"
+        },
+        "D": {
+            "item": "minecraft:diamond"
+        },
+        "n": {
+            "item": "minecraft:netherite_ingot"
+        },
+        "V": {
+            "item": "vtubersparadise:disdeers_claws_l1"
+        }
+    },
+    "result": {
+        "item": "vtubersparadise:disdeers_claws_l2",
+        "count": 1
+    },
+    "group": "disdeers_claws"
+}

@@ -140,9 +140,7 @@ public class HellTridentL1 extends Item implements IVanishable
      * the damage on the stack.
      */
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damageItem(1, attacker, (entity) -> {
-            entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-        });
+
         return true;
     }
 
@@ -150,11 +148,7 @@ public class HellTridentL1 extends Item implements IVanishable
      * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
      */
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
-        if ((double)state.getBlockHardness(worldIn, pos) != 0.0D) {
-            stack.damageItem(2, entityLiving, (entity) -> {
-                entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-            });
-        }
+
 
         return true;
     }

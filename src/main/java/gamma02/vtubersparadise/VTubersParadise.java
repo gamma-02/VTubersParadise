@@ -8,6 +8,7 @@ import gamma02.vtubersparadise.items.AstroScythe.AstroScytheL3;
 import gamma02.vtubersparadise.items.BeckyBow.BeckyBowL1;
 import gamma02.vtubersparadise.items.BeckyBow.BeckyBowL2;
 import gamma02.vtubersparadise.items.BeckyBow.BeckyBowL3;
+import gamma02.vtubersparadise.items.DisdeersClaws.DisdeersClawsL1;
 import gamma02.vtubersparadise.items.EchoTrident.EchoTridentL1;
 import gamma02.vtubersparadise.items.EchoTrident.EchoTridentL2;
 import gamma02.vtubersparadise.items.EchoTrident.EchoTridentL3;
@@ -98,9 +99,12 @@ public class VTubersParadise
     public static final RegistryObject<Item> SHINE_SWORD_L1 = Items.register("shine_sword_l1", () -> new ShineSwordL1(ItemTier.NETHERITE, 6, 1f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
     public static final RegistryObject<Item> SHINE_SWORD_L2 = Items.register("shine_sword_l2", () -> new ShineSwordL2(ItemTier.NETHERITE, 8, 1.1f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
     public static final RegistryObject<Item> SHINE_SWORD_L3 = Items.register("shine_sword_l3", () -> new ShineSwordL3(ItemTier.NETHERITE, 11, 1.2f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
-    public static final RegistryObject<Item> BECKY_BOWL_L1 = Items.register("becky_bow_l1", () -> new BeckyBowL1(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
-    public static final RegistryObject<Item> BECKY_BOWL_L2 = Items.register("becky_bow_l2", () -> new BeckyBowL2(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
-    public static final RegistryObject<Item> BECKY_BOWL_L3 = Items.register("becky_bow_l3", () -> new BeckyBowL3(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> BECKY_BOWL_L1 = Items.register("becky_bow_l1", () -> new BeckyBowL1(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1), 1));
+    public static final RegistryObject<Item> BECKY_BOWL_L2 = Items.register("becky_bow_l2", () -> new BeckyBowL2(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1), 2));
+    public static final RegistryObject<Item> BECKY_BOWL_L3 = Items.register("becky_bow_l3", () -> new BeckyBowL3(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1), 3));
+    public static final RegistryObject<Item> DISDEERS_CLAWS_L1 = Items.register("disdeers_claws_l1", () -> new DisdeersClawsL1(ItemTier.NETHERITE, 3, 1.8f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> DISDEERS_CLAWS_L2 = Items.register("disdeers_claws_l2", () -> new ShineSwordL3(ItemTier.NETHERITE, 5, 2f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> DISDEERS_CLAWS_L3 = Items.register("disdeers_claws_l3", () -> new ShineSwordL3(ItemTier.NETHERITE, 7, 2f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
 
 
     public static final RegistryObject<Item> ASTRO_SCYTHE_L1 = Items.register("astro_scythe_l1", () -> new AstroScytheL1(
@@ -125,8 +129,8 @@ public class VTubersParadise
     public static final DeferredRegister<EntityType<?>> EntityType = DeferredRegister.create(ForgeRegistries.ENTITIES, "vtubersparadise");
     public static final RegistryObject<EntityType<SlimeballProjectile>> SLIME_PROJECTILE = EntityType.register("slime_projectile", () -> net.minecraft.entity.EntityType.Builder.<SlimeballProjectile>create(SlimeballProjectile::new, EntityClassification.AMBIENT).size(0.5F, 0.9F).build("vtubersparadise"));
 
-    public static final RegistryObject<EntityType<HellTridentEntityL2>> HELL_TRIDENT_ENTITY_L2 = EntityType.register("hell_trident_entity_l2", () -> net.minecraft.entity.EntityType.Builder.<HellTridentEntityL2>create(HellTridentEntityL2::new, EntityClassification.AMBIENT).size(0.5F, 0.9F).build("vtubersparadise"));
-    public static final RegistryObject<EntityType<HellTridentEntityL3>> HELL_TRIDENT_ENTITY_L3 = EntityType.register("hell_trident_entity_l3", () -> net.minecraft.entity.EntityType.Builder.<HellTridentEntityL3>create(HellTridentEntityL3::new, EntityClassification.AMBIENT).size(0.5F, 0.9F).build("vtubersparadise"));
+//    public static final RegistryObject<EntityType<HellTridentEntityL2>> HELL_TRIDENT_ENTITY_L2 = EntityType.register("hell_trident_entity_l2", () -> net.minecraft.entity.EntityType.Builder.<HellTridentEntityL2>create(HellTridentEntityL2::new, EntityClassification.AMBIENT).size(0.5F, 0.9F).build("vtubersparadise"));
+//    public static final RegistryObject<EntityType<HellTridentEntityL3>> HELL_TRIDENT_ENTITY_L3 = EntityType.register("hell_trident_entity_l3", () -> net.minecraft.entity.EntityType.Builder.<HellTridentEntityL3>create(HellTridentEntityL3::new, EntityClassification.AMBIENT).size(0.5F, 0.9F).build("vtubersparadise"));
 
 
     public VTubersParadise()

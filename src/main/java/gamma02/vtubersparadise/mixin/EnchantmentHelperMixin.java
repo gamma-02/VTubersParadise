@@ -25,7 +25,7 @@ public class EnchantmentHelperMixin
     public static float getSweepingDamageRatio(LivingEntity entityIn) {
         int i = getMaxEnchantmentLevel(Enchantments.SWEEPING, entityIn);
         if(entityIn.getHeldItemMainhand().getItem() instanceof ISweepingNoEnchant){
-            i = 10;
+            i = 3;
         }
         return i > 0 ? SweepingEnchantment.getSweepingDamageRatio(i) : 0.0F;
     }

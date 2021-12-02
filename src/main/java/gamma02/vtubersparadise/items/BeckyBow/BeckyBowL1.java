@@ -24,9 +24,11 @@ import java.util.Random;
 
 public class BeckyBowL1 extends Item
 {
-    public BeckyBowL1(Properties properties)
+    public int level;
+    public BeckyBowL1(Properties properties, int level)
     {
         super(properties);
+        this.level = level;
     }
 
     @Override public UseAction getUseAction(ItemStack stack)
@@ -71,13 +73,19 @@ public class BeckyBowL1 extends Item
                 ArrowEntity entity = new ArrowEntity(worldIn, entityLiving);
                 Vector3d vec = entityLiving.getLookVec().mul(2, 2, 2);
                 entity.setVelocity(vec.x, vec.y, vec.z);
-                entity.setDamage(getArrowDamage());
+                if(this.level == 2){
+                    entity.setDamage(8);
+                }else if(this.level == 3){
+                    entity.setDamage(12);
+                }else{
+                    entity.setDamage(5);
+                }
                 EffectInstance[] effects = new EffectInstance[2];
-                if (level() == 2)
+                if (this.level == 2)
                 {
                     effects[0] = new EffectInstance(Effects.INSTANT_DAMAGE);
                     effects[1] = new EffectInstance(Effects.INSTANT_HEALTH);
-                } else if (level() == 3)
+                } else if (this.level == 3)
                 {
                     effects[0] = new EffectInstance(Effects.INSTANT_DAMAGE, 1, 1);
                     effects[1] = new EffectInstance(Effects.INSTANT_HEALTH, 1, 1);
@@ -107,9 +115,7 @@ public class BeckyBowL1 extends Item
 
         return f;
     }
-    public double getArrowDamage(){
-        return 5;
-    }
+
     public ArrowEntity setEffectsAndChance(ArrowEntity entity, EffectInstance[] effects, Random random){
 
 

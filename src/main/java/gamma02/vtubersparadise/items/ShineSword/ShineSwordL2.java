@@ -15,9 +15,10 @@ public class ShineSwordL2 extends ShineSwordL1
 
     @Override public boolean hitEntity(@NotNull ItemStack stack, LivingEntity target, @NotNull LivingEntity attacker)
     {
-        ItemStack shield = target.getHeldItem(target.getActiveHand());
-        if(shield.getItem() == Items.SHIELD){
-            shield.setDamage(0);
+        if(target.getHeldItemMainhand().getItem() == Items.SHIELD){
+            target.getHeldItemMainhand().setCount(0);
+        }else if(target.getHeldItemOffhand().getItem() == Items.SHIELD){
+            target.getHeldItemOffhand().setCount(0);
         }
         return super.hitEntity(stack, target, attacker);
     }

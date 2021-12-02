@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "LLL",
+        "PIP"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:prismarine_shard"
+        },
+        "L": {
+            "item": "minecraft:leather"
+        },
+        "P": {
+            "item": "minecraft:purple_dye"
+        },
+        "I": {
+            "item": "minecraft:iron_sword"
+        }
+    },
+    "result": {
+        "item": "vtubersparadise:disdeers_claws_l1",
+        "count": 1
+    },
+    "group": "disdeers_claws"
+}

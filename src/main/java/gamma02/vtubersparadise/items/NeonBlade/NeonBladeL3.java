@@ -15,14 +15,10 @@ public class NeonBladeL3 extends NeonBladeL2
 
     @Override public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker)
     {
-        if(target instanceof PlayerEntity){
-            PlayerEntity targetedPlayer = (PlayerEntity) target;
-            targetedPlayer.getActiveHand();
-            ItemStack stack1 = targetedPlayer.getHeldItem(targetedPlayer.getActiveHand());
-            if (stack1.getItem().equals(Items.SHIELD))
-            {
-                stack1.setDamage(0);
-            }
+        if(target.getHeldItemMainhand().getItem() == Items.SHIELD){
+            target.getHeldItemMainhand().setCount(0);
+        }else if(target.getHeldItemOffhand().getItem() == Items.SHIELD){
+            target.getHeldItemOffhand().setCount(0);
         }
         return super.hitEntity(stack, target, attacker);
     }

@@ -22,10 +22,11 @@ public class VTubersParadiseClient
     public static void register(final FMLClientSetupEvent event) {
         System.out.println("registering");
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.HELL_TRIDENT_ENTITY_L1, Renderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(VTubersParadise.HELL_TRIDENT_ENTITY_L2.get(), Renderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(VTubersParadise.HELL_TRIDENT_ENTITY_L3.get(), Renderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.HELL_TRIDENT_ENTITY_L2, Renderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.HELL_TRIDENT_ENTITY_L3, Renderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.NEON_SWORD_ENTITY, NeonSpearRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.ECHO_TRIDENT_ENTITY_L1, EchoTridentRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.ECHO_TRIDENT_ENTITY_L2, EchoTridentRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.ECHO_TRIDENT_ENTITY_L3, EchoTridentRender::new);
     }
 }

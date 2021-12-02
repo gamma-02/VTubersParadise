@@ -24,7 +24,7 @@ public class ShineSwordL3 extends ShineSwordL2
 
     @Override public @NotNull UseAction getUseAction(@NotNull ItemStack stack)
     {
-        return UseAction.EAT;
+        return UseAction.CROSSBOW;
     }
 
     @Override public int getUseDuration(@NotNull ItemStack stack)
@@ -34,7 +34,7 @@ public class ShineSwordL3 extends ShineSwordL2
 
     @Override public void onPlayerStoppedUsing(@NotNull ItemStack stack, @NotNull World worldIn, @NotNull LivingEntity entityLiving, int timeLeft)
     {
-        if(entityLiving instanceof PlayerEntity && this.getUseDuration(stack) - timeLeft >= 20)
+        if(entityLiving instanceof PlayerEntity && this.getUseDuration(stack) - timeLeft >= 40)
         {
             PlayerEntity user = (PlayerEntity) entityLiving;
             if (!user.getCooldownTracker().hasCooldown(stack.getItem()))
@@ -46,9 +46,10 @@ public class ShineSwordL3 extends ShineSwordL2
                 EffectInstance effects;
                 effects = new EffectInstance(Effects.BLINDNESS, 600);
                 areaEffectCloud.setPotion(new Potion(effects));
-                areaEffectCloud.setDuration(600);
+                areaEffectCloud.setDuration(100);
                 areaEffectCloud.setRadius(5f);
                 worldIn.addEntity(areaEffectCloud);
+                user.getCooldownTracker().setCooldown(stack.getItem(), 600);
             }
         }
     }

@@ -1,7 +1,5 @@
 package gamma02.vtubersparadise.entities.EchoTrident;
 
-
-
 import gamma02.vtubersparadise.VTubersParadise;
 import gamma02.vtubersparadise.entities.ModEntities;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -39,45 +37,44 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
-import java.util.Optional;
 
-public class EchoTridentEntityL1 extends AbstractArrowEntity implements IAnimatable
+public class EchoTridentEntityL3 extends EchoTridentEntityL1
 {
     private static final DataParameter<Byte> LOYALTY_LEVEL = EntityDataManager.createKey(
             net.minecraft.entity.projectile.TridentEntity.class, DataSerializers.BYTE);
     private static final DataParameter<Boolean> field_226571_aq_ = EntityDataManager.createKey(
             net.minecraft.entity.projectile.TridentEntity.class, DataSerializers.BOOLEAN);
-    private ItemStack thrownStack = new ItemStack(VTubersParadise.ECHO_TRIDENT_L1.get());
+    private ItemStack thrownStack = new ItemStack(VTubersParadise.ECHO_TRIDENT_L3.get());
     private boolean dealtDamage;
     public int returningTicks;
     private AnimationFactory factory = new AnimationFactory(this);
 
 
-    public EchoTridentEntityL1(EntityType<? extends EchoTridentEntityL1> type, World worldIn) {
+    public EchoTridentEntityL3(EntityType<? extends EchoTridentEntityL1> type, World worldIn) {
         super(type, worldIn);
     }
 
-    public EchoTridentEntityL1(EntityType<? extends EchoTridentEntityL1> type, World worldIn, LivingEntity thrower, ItemStack thrownStackIn) {
-        super(type, thrower, worldIn);
+    public EchoTridentEntityL3(EntityType<? extends EchoTridentEntityL1> type, World worldIn, LivingEntity thrower, ItemStack thrownStackIn) {
+        super(type, worldIn, thrower, thrownStackIn);
         this.thrownStack = thrownStackIn.copy();
-        this.dataManager.set(LOYALTY_LEVEL, (byte) this.getLoyaltyLevel());
+        this.dataManager.set(LOYALTY_LEVEL, (byte) 3);
         this.dataManager.set(field_226571_aq_, thrownStackIn.hasEffect());
     }
 
     @OnlyIn(Dist.CLIENT)
-    public EchoTridentEntityL1(EntityType<? extends EchoTridentEntityL1> type, World worldIn, double x, double y, double z) {
-        super(type, x, y, z, worldIn);
+    public EchoTridentEntityL3(EntityType<? extends EchoTridentEntityL1> type, World worldIn, double x, double y, double z) {
+        super(type, worldIn, x, y, z);
     }
 
     public byte getLoyaltyLevel(){
-        return (byte)0;
+        return (byte)3;
     }
 
 
 
     protected void registerData() {
         super.registerData();
-        this.dataManager.register(LOYALTY_LEVEL, this.getLoyaltyLevel());
+        this.dataManager.register(LOYALTY_LEVEL, (byte) 3);
         this.dataManager.register(field_226571_aq_, false);
     }
 
@@ -91,7 +88,7 @@ public class EchoTridentEntityL1 extends AbstractArrowEntity implements IAnimata
 
         Entity entity = this.getShooter();
         if ((this.dealtDamage || this.getNoClip()) && entity != null) {
-            int i = this.dataManager.get(LOYALTY_LEVEL);
+            int i = 3;
             if (i > 0 && !this.shouldReturnToThrower()) {
                 if (!this.world.isRemote && this.pickupStatus == AbstractArrowEntity.PickupStatus.ALLOWED) {
                     this.entityDropItem(this.getArrowStack(), 0.1F);
@@ -153,7 +150,7 @@ public class EchoTridentEntityL1 extends AbstractArrowEntity implements IAnimata
     protected void onEntityHit(EntityRayTraceResult result) {
         Entity entity = result.getEntity();
 
-        float f = 6.0F;
+        float f = 8.0F;
 
         if (entity instanceof LivingEntity) {
             LivingEntity livingentity = (LivingEntity)entity;
@@ -226,7 +223,7 @@ public class EchoTridentEntityL1 extends AbstractArrowEntity implements IAnimata
         }
 
         this.dealtDamage = compound.getBoolean("DealtDamage");
-        this.dataManager.set(LOYALTY_LEVEL, this.getLoyaltyLevel());
+        this.dataManager.set(LOYALTY_LEVEL, (byte)3);
     }
 
 
@@ -237,7 +234,7 @@ public class EchoTridentEntityL1 extends AbstractArrowEntity implements IAnimata
     }
 
     public void func_225516_i_() {
-        int i = this.dataManager.get(LOYALTY_LEVEL);
+        int i = 3;
         if (this.pickupStatus != AbstractArrowEntity.PickupStatus.ALLOWED || i <= 0) {
             super.func_225516_i_();
         }
@@ -283,9 +280,7 @@ public class EchoTridentEntityL1 extends AbstractArrowEntity implements IAnimata
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    public EchoTridentEntityL1(EntityType<? extends EchoTridentEntityL1> type, FMLPlayMessages.SpawnEntity packet, World world) {
-        super(type, world);
+    public EchoTridentEntityL3(EntityType<? extends EchoTridentEntityL1> type, FMLPlayMessages.SpawnEntity packet, World world) {
+        super(type, packet, world);
     }
-
-
 }
