@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#D#",
+    "nVn",
+    "#D#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "n": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "V": {
+      "item": "vtubersparadise:slime_sword_l1"
+    }
+  },
+  "result": {
+    "item": "vtubersparadise:slime_sword_l2",
+    "count": 1
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#D#",
+    "nVe",
+    "#D#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:popped_chorus_fruit"
+    },
+    "D": {
+      "item": "minecraft:end_crystal"
+    },
+    "n": {
+      "item": "minecraft:dragon_egg"
+    },
+    "V": {
+      "item": "vtubersparadise:becky_bow_l2"
+    },
+    "e": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "result": {
+    "item": "vtubersparadise:becky_bow_l3",
+    "count": 1
+  }
+}

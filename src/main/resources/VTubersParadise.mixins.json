@@ -3,11 +3,9 @@
   "minVersion": "0.8",
   "package": "gamma02.vtubersparadise.mixin",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "vtubersparadise.refmap.json",
+  "refmap": "VTubersParadise.refmap.json",
   "mixins": [
     "EnchantmentHelperMixin"
-  ],
-  "client": [
   ],
   "injectors": {
     "defaultRequire": 1

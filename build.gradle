@@ -8,7 +8,7 @@ buildscript {
 
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.+', changing: true
         classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
 
     }
@@ -20,10 +20,13 @@ apply plugin: 'org.spongepowered.mixin'
 group = 'gamma02'
 version = '1.0-SNAPSHOT'
 
-java {
-    archivesBaseName = 'VTubersParadise'
-    toolchain.languageVersion = JavaLanguageVersion.of(8)
-}
+
+
+archivesBaseName = 'VTubersParadise'
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+
+
+
 
 minecraft {
     // The mappings can be changed at any time and must be in the following format.
@@ -159,7 +162,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
-    annotationProcessor 'org.spongepowered:mixin:0.8:processor'
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
@@ -177,5 +180,7 @@ jar {
         ])
     }
 }
+
+
 
 jar.finalizedBy('reobfJar')
