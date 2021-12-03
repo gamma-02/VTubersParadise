@@ -85,8 +85,5 @@ public class EchoTridentL1 extends SwordItem
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
 
-    @Override public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker)
-    {
-        return true;
-    }
+
 }
