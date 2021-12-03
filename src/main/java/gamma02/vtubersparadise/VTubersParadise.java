@@ -77,34 +77,34 @@ public class VTubersParadise
     public static final String ModID = "vtubersparadise";
     public static final DeferredRegister<Item> Items = DeferredRegister.create(ForgeRegistries.ITEMS, "vtubersparadise");
     public static final RegistryObject<Item> SLIME_SWORD_L1 = Items.register("slime_sword_l1", () -> new SlimeSwordL1(
-            ItemTier.NETHERITE, 6,  0.5f,
+            ItemTier.NETHERITE, 6,  -2f,
             new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
     public static final RegistryObject<Item> SLIME_SWORD_L2 = Items.register("slime_sword_l2", () -> new SlimeSwordL2(
-            ItemTier.NETHERITE, 6, 1f,
+            ItemTier.NETHERITE, 6, -1.5f,
             new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)
     ));
     public static final RegistryObject<Item> SLIME_SWORD_L3 = Items.register("slime_sword_l3", () -> new SlimeSwordL3(
-            ItemTier.NETHERITE, 6, 1f,
+            ItemTier.NETHERITE, 6, -1.5f,
             new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)
     ));
     public static final RegistryObject<Item> HELL_TRIDENT_L1 = Items.register("hell_trident_l1", () -> new HellTridentL1(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
     public static final RegistryObject<Item> HELL_TRIDENT_L2 = Items.register("hell_trident_l2", () -> new HellTridentL2(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
     public static final RegistryObject<Item> HELL_TRIDENT_L3 = Items.register("hell_trident_l3", () -> new HellTridentL3(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
-    public static final RegistryObject<Item> NEON_BLADE_L1 = Items.register("neon_blade_l1", () -> new NeonBladeL1(ItemTier.NETHERITE, 4, 1.5f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> NEON_BLADE_L2 = Items.register("neon_blade_l2", () -> new NeonBladeL2(ItemTier.NETHERITE, 6, 1.5f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> NEON_BLADE_L3 = Items.register("neon_blade_l3", () -> new NeonBladeL3(ItemTier.NETHERITE, 8, 1.7f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
-    public static final RegistryObject<Item> ECHO_TRIDENT_L1 = Items.register("echo_trident_l1", () -> new EchoTridentL1(ItemTier.NETHERITE, 3, 1.3f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
-    public static final RegistryObject<Item> ECHO_TRIDENT_L2 = Items.register("echo_trident_l2", () -> new EchoTridentL2(ItemTier.NETHERITE, 5, 1.4f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
-    public static final RegistryObject<Item> ECHO_TRIDENT_L3 = Items.register("echo_trident_l3", () -> new EchoTridentL3(ItemTier.NETHERITE, 7, 1.6f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
-    public static final RegistryObject<Item> SHINE_SWORD_L1 = Items.register("shine_sword_l1", () -> new ShineSwordL1(ItemTier.NETHERITE, 6, 1f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
-    public static final RegistryObject<Item> SHINE_SWORD_L2 = Items.register("shine_sword_l2", () -> new ShineSwordL2(ItemTier.NETHERITE, 8, 1.1f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
-    public static final RegistryObject<Item> SHINE_SWORD_L3 = Items.register("shine_sword_l3", () -> new ShineSwordL3(ItemTier.NETHERITE, 11, 1.2f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> NEON_BLADE_L1 = Items.register("neon_blade_l1", () -> new NeonBladeL1(ItemTier.NETHERITE, 4, -2, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> NEON_BLADE_L2 = Items.register("neon_blade_l2", () -> new NeonBladeL2(ItemTier.NETHERITE, 6, -1.5f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> NEON_BLADE_L3 = Items.register("neon_blade_l3", () -> new NeonBladeL3(ItemTier.NETHERITE, 8, -1.7f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
+    public static final RegistryObject<Item> ECHO_TRIDENT_L1 = Items.register("echo_trident_l1", () -> new EchoTridentL1(ItemTier.NETHERITE, 3, -2, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> ECHO_TRIDENT_L2 = Items.register("echo_trident_l2", () -> new EchoTridentL2(ItemTier.NETHERITE, 5, -1.4f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> ECHO_TRIDENT_L3 = Items.register("echo_trident_l3", () -> new EchoTridentL3(ItemTier.NETHERITE, 7, -1.6f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> SHINE_SWORD_L1 = Items.register("shine_sword_l1", () -> new ShineSwordL1(ItemTier.NETHERITE, 6, -2, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> SHINE_SWORD_L2 = Items.register("shine_sword_l2", () -> new ShineSwordL2(ItemTier.NETHERITE, 8, -1.1f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> SHINE_SWORD_L3 = Items.register("shine_sword_l3", () -> new ShineSwordL3(ItemTier.NETHERITE, 11, -1.2f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
     public static final RegistryObject<Item> BECKY_BOWL_L1 = Items.register("becky_bow_l1", () -> new BeckyBowL1(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1), 1));
     public static final RegistryObject<Item> BECKY_BOWL_L2 = Items.register("becky_bow_l2", () -> new BeckyBowL2(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1), 2));
     public static final RegistryObject<Item> BECKY_BOWL_L3 = Items.register("becky_bow_l3", () -> new BeckyBowL3(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1), 3));
-    public static final RegistryObject<Item> DISDEERS_CLAWS_L1 = Items.register("disdeers_claws_l1", () -> new DisdeersClawsL1(ItemTier.NETHERITE, 3, 1.8f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
-    public static final RegistryObject<Item> DISDEERS_CLAWS_L2 = Items.register("disdeers_claws_l2", () -> new ShineSwordL3(ItemTier.NETHERITE, 5, 2f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
-    public static final RegistryObject<Item> DISDEERS_CLAWS_L3 = Items.register("disdeers_claws_l3", () -> new ShineSwordL3(ItemTier.NETHERITE, 7, 2f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> DISDEERS_CLAWS_L1 = Items.register("disdeers_claws_l1", () -> new DisdeersClawsL1(ItemTier.NETHERITE, 3, -2, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> DISDEERS_CLAWS_L2 = Items.register("disdeers_claws_l2", () -> new ShineSwordL3(ItemTier.NETHERITE, 5, -2f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final RegistryObject<Item> DISDEERS_CLAWS_L3 = Items.register("disdeers_claws_l3", () -> new ShineSwordL3(ItemTier.NETHERITE, 7, -2f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
 
 
     public static final RegistryObject<Item> ASTRO_SCYTHE_L1 = Items.register("astro_scythe_l1", () -> new AstroScytheL1(
@@ -126,8 +126,6 @@ public class VTubersParadise
             ItemTier.NETHERITE, 8, 1.5f,
             new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
 
-    public static final DeferredRegister<EntityType<?>> EntityType = DeferredRegister.create(ForgeRegistries.ENTITIES, "vtubersparadise");
-    public static final RegistryObject<EntityType<SlimeballProjectile>> SLIME_PROJECTILE = EntityType.register("slime_projectile", () -> net.minecraft.entity.EntityType.Builder.<SlimeballProjectile>create(SlimeballProjectile::new, EntityClassification.AMBIENT).size(0.5F, 0.9F).build("vtubersparadise"));
 
 //    public static final RegistryObject<EntityType<HellTridentEntityL2>> HELL_TRIDENT_ENTITY_L2 = EntityType.register("hell_trident_entity_l2", () -> net.minecraft.entity.EntityType.Builder.<HellTridentEntityL2>create(HellTridentEntityL2::new, EntityClassification.AMBIENT).size(0.5F, 0.9F).build("vtubersparadise"));
 //    public static final RegistryObject<EntityType<HellTridentEntityL3>> HELL_TRIDENT_ENTITY_L3 = EntityType.register("hell_trident_entity_l3", () -> net.minecraft.entity.EntityType.Builder.<HellTridentEntityL3>create(HellTridentEntityL3::new, EntityClassification.AMBIENT).size(0.5F, 0.9F).build("vtubersparadise"));
@@ -146,7 +144,6 @@ public class VTubersParadise
 
         // Register ourselves for server and other game events we are interested in
         Items.register(FMLJavaModLoadingContext.get().getModEventBus());
-        EntityType.register(FMLJavaModLoadingContext.get().getModEventBus());
         MinecraftForge.EVENT_BUS.register(this);
 
     }
@@ -170,7 +167,6 @@ public class VTubersParadise
     {
         // do something that can only be done on the client
         LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
-        RenderingRegistry.registerEntityRenderingHandler(SLIME_PROJECTILE.get(), (m) -> new SpriteRenderer<>(m, Minecraft.getInstance().getItemRenderer()));
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)

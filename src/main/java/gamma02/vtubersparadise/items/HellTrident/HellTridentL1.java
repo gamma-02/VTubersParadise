@@ -16,6 +16,7 @@ import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.TridentItem;
 import net.minecraft.item.UseAction;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
@@ -25,7 +26,7 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
-public class HellTridentL1 extends Item implements IVanishable
+public class HellTridentL1 extends TridentItem implements IVanishable
 {
     private final Multimap<Attribute, AttributeModifier> tridentAttributes;
 
@@ -33,7 +34,7 @@ public class HellTridentL1 extends Item implements IVanishable
         super(builderIn);
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", 4.0D, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double)-1.9F, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", -2, AttributeModifier.Operation.ADDITION));
         this.tridentAttributes = builder.build();
     }
 
@@ -63,7 +64,6 @@ public class HellTridentL1 extends Item implements IVanishable
      */
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
 
-        System.out.println("yes I stopped");
         if (entityLiving instanceof PlayerEntity) {
             PlayerEntity playerentity = (PlayerEntity)entityLiving;
             int i = this.getUseDuration(stack) - timeLeft;
@@ -132,7 +132,7 @@ public class HellTridentL1 extends Item implements IVanishable
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         System.out.println("useItem lol");
         playerIn.setActiveHand(handIn);
-        return super.onItemRightClick(worldIn, playerIn, handIn);
+        return ActionResult.resultFail(playerIn.getHeldItem(handIn));
     }
 
     /**

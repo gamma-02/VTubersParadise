@@ -25,8 +25,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
-public class HellTridentL3 extends TridentItem
+public class HellTridentL3 extends HellTridentL2
 {
     private final Multimap<Attribute, AttributeModifier> tridentAttributes;
 
@@ -45,7 +46,7 @@ public class HellTridentL3 extends TridentItem
     /**
      * returns the action that specifies what animation to play when the items is being used
      */
-    @Override public UseAction getUseAction(ItemStack stack)
+    @Override public @NotNull UseAction getUseAction(ItemStack stack)
     {
         return UseAction.SPEAR;
     }
@@ -113,7 +114,7 @@ public class HellTridentL3 extends TridentItem
                             soundevent = SoundEvents.ITEM_TRIDENT_RIPTIDE_1;
                         }
 
-                        worldIn.playMovingSound((PlayerEntity)null, playerentity, soundevent, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                        worldIn.playMovingSound(null, playerentity, soundevent, SoundCategory.PLAYERS, 1.0F, 1.0F);
                     }
 
                 }
@@ -126,9 +127,9 @@ public class HellTridentL3 extends TridentItem
      * {@link #onItemUse}.
      */
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        System.out.println("useItem lol");
+
         playerIn.setActiveHand(handIn);
-        return super.onItemRightClick(worldIn, playerIn, handIn);
+        return ActionResult.resultFail(playerIn.getHeldItem(handIn));
     }
 
 

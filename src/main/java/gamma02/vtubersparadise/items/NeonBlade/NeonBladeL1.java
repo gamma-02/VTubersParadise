@@ -39,7 +39,7 @@ public class NeonBladeL1 extends SwordItem implements ISweepingNoEnchant
             PlayerEntity user = (PlayerEntity) attacker;
             user.spawnSweepParticles();
         }
-        return super.hitEntity(stack, target, attacker);
+        return true;
 
     }
 }

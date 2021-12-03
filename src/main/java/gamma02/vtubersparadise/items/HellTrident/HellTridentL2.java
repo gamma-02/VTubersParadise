@@ -23,8 +23,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
-public class HellTridentL2 extends Item implements IVanishable
+public class HellTridentL2 extends HellTridentL1 implements IVanishable
 {
     private final Multimap<Attribute, AttributeModifier> tridentAttributes;
 
@@ -32,7 +33,7 @@ public class HellTridentL2 extends Item implements IVanishable
         super(builderIn);
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", 5.0D, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double)1.3F, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", 1.3F, AttributeModifier.Operation.ADDITION));
         this.tridentAttributes = builder.build();
     }
 
@@ -43,7 +44,7 @@ public class HellTridentL2 extends Item implements IVanishable
     /**
      * returns the action that specifies what animation to play when the items is being used
      */
-    public UseAction getUseAction(ItemStack stack) {
+    @Override public @NotNull UseAction getUseAction(ItemStack stack) {
         return UseAction.SPEAR;
     }
 
@@ -94,11 +95,10 @@ public class HellTridentL2 extends Item implements IVanishable
                         f1 = f1 * (f5 / f4);
                         f2 = f2 * (f5 / f4);
                         f3 = f3 * (f5 / f4);
-                        playerentity.addVelocity((double)f1, (double)f2, (double)f3);
+                        playerentity.addVelocity(f1, f2, f3);
                         playerentity.startSpinAttack(20);
                         if (playerentity.isOnGround()) {
-                            float f6 = 1.1999999F;
-                            playerentity.move(MoverType.SELF, new Vector3d(0.0D, (double)1.1999999F, 0.0D));
+                            playerentity.move(MoverType.SELF, new Vector3d(0.0D, 1.1999999F, 0.0D));
                         }
 
                         SoundEvent soundevent;
@@ -110,7 +110,7 @@ public class HellTridentL2 extends Item implements IVanishable
                             soundevent = SoundEvents.ITEM_TRIDENT_RIPTIDE_1;
                         }
 
-                        worldIn.playMovingSound((PlayerEntity)null, playerentity, soundevent, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                        worldIn.playMovingSound(null, playerentity, soundevent, SoundCategory.PLAYERS, 1.0F, 1.0F);
                     }
 
                 }
@@ -125,7 +125,7 @@ public class HellTridentL2 extends Item implements IVanishable
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
 
         playerIn.setActiveHand(handIn);
-        return super.onItemRightClick(worldIn, playerIn, handIn);
+        return ActionResult.resultFail(playerIn.getHeldItem(handIn));
     }
 
     /**
@@ -137,17 +137,12 @@ public class HellTridentL2 extends Item implements IVanishable
         return true;
     }
 
-    @Override public void onUsingTick(ItemStack stack, LivingEntity player, int count)
-    {//possible brute force lmfao - yep nope dont need awh;awefjhlaskdjhjfsjawejlw ehehe
-        super.onUsingTick(stack, player, count);
-    }
+
 
     /**
      * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
      */
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
-
-
         return true;
     }
 

@@ -1,6 +1,7 @@
 package gamma02.vtubersparadise.items.SlimeSword;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
@@ -25,6 +26,10 @@ public class SlimeSwordL1 extends SwordItem
         }
         stack.deserializeNBT(nbt);
 
+    }
+    @Override public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker)
+    {
+        return true;
     }
 
 }

@@ -38,11 +38,11 @@ public class ShineSwordL1 extends SwordItem implements ISweepingNoEnchant
                 livingentity.attackEntityFrom(DamageSource.causeMobDamage(attacker), SweepingEnchantment.getSweepingDamageRatio(10));
             }
         }
-        attacker.world.playSound((PlayerEntity)null, attacker.getPosX(), attacker.getPosY(), attacker.getPosZ(), SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, attacker.getSoundCategory(), 1.0F, 1.0F);
+        attacker.world.playSound(null, attacker.getPosX(), attacker.getPosY(), attacker.getPosZ(), SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, attacker.getSoundCategory(), 1.0F, 1.0F);
         if(attacker instanceof PlayerEntity){
             PlayerEntity user = (PlayerEntity) attacker;
             user.spawnSweepParticles();
         }
-        return super.hitEntity(stack, target, attacker);
+        return true;
     }
 }

@@ -1,6 +1,7 @@
 package gamma02.vtubersparadise.items.SlimeSword;
 
 import gamma02.vtubersparadise.VTubersParadise;
+import gamma02.vtubersparadise.entities.ModEntities;
 import gamma02.vtubersparadise.entities.SlimeballProjectile;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -32,7 +33,7 @@ public class SlimeSwordL2 extends SlimeSwordL1
         }
         if(hasIronIngots && !world.isRemote)
         {
-            Entity entity = new SlimeballProjectile(VTubersParadise.SLIME_PROJECTILE.get(), player.getPositionVec().add(0, 1.8, 0), world, false, player1 );
+            SlimeballProjectile entity = new SlimeballProjectile(ModEntities.SLIMEBALL_PROJECTILE, player.getPositionVec().add(0, 1.8, 0), world, false, player1 );
             world.addEntity(entity);
 
             Vector3d vec = player1.getLookVec().mul(1.3, 1.3, 1.3);

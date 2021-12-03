@@ -15,6 +15,6 @@ public class FireKatanaL1 extends SwordItem
     @Override public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker)
     {
         target.setFire(5);
-        return super.hitEntity(stack, target, attacker);
+        return true;
     }
 }

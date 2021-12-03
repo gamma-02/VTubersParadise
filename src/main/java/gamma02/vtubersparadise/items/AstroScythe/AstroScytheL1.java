@@ -55,7 +55,7 @@ public class AstroScytheL1 extends SwordItem implements IExtendedReach
         }else if(target.getHeldItemOffhand().getItem() == Items.SHIELD){
             target.getHeldItemOffhand().setCount(0);
         }
-        return attacker.canAttack(target);
+        return true;
     }
 }
 
