@@ -254,7 +254,6 @@ public class EchoTridentEntityL1 extends AbstractArrowEntity implements IAnimata
     }
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.none", true));
         return PlayState.CONTINUE;
     }
 

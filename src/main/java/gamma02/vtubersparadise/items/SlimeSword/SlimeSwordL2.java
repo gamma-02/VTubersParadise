@@ -4,6 +4,7 @@ import gamma02.vtubersparadise.VTubersParadise;
 import gamma02.vtubersparadise.entities.ModEntities;
 import gamma02.vtubersparadise.entities.SlimeballProjectile;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.util.ActionResult;
@@ -13,6 +14,7 @@ import net.minecraft.world.World;
 
 public class SlimeSwordL2 extends SlimeSwordL1
 {
+    private int timer = 0;
     public SlimeSwordL2(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builderIn)
     {
         super(tier, attackDamageIn, attackSpeedIn, builderIn);
@@ -31,7 +33,7 @@ public class SlimeSwordL2 extends SlimeSwordL1
                 hasIronIngots = true;
             }
         }
-        if(hasIronIngots && !world.isRemote)
+        if(hasIronIngots && !world.isRemote && this.timer == 0)
         {
             SlimeballProjectile entity = new SlimeballProjectile(ModEntities.SLIMEBALL_PROJECTILE, player.getPositionVec().add(0, 1.8, 0), world, false, player1 );
             world.addEntity(entity);
@@ -41,6 +43,7 @@ public class SlimeSwordL2 extends SlimeSwordL1
             entity.setVelocity(vec.x, vec.y, vec.z);
             ItemStack stack2 = player1.inventory.getStackInSlot(player1.inventory.getSlotFor(Items.IRON_NUGGET.getDefaultInstance()));
             player1.inventory.getStackInSlot(player1.inventory.getSlotFor(Items.IRON_NUGGET.getDefaultInstance())).setCount(stack2.getCount()-1);
+            timer = 40;
         }
         if(hasIronIngots){
 
@@ -69,4 +72,12 @@ public class SlimeSwordL2 extends SlimeSwordL1
 //        }
 //        super.onUse(worldIn, livingEntityIn, stack, count);
 //    }
+
+    @Override public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot,
+            boolean isSelected)
+    {
+        if(this.timer > 0){
+            this.timer--;
+        }
+    }
 }

@@ -21,7 +21,6 @@ public class DisdeersClawsL1 extends SwordItem
     {
         if(MathHelper.nextInt(new Random(), 0, 100) <=15){
             target.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 60));
-            target.addPotionEffect(new EffectInstance(Effects.GLOWING, 600));
         }
         return true;
     }

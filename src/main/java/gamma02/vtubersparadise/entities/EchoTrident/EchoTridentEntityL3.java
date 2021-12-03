@@ -251,7 +251,6 @@ public class EchoTridentEntityL3 extends EchoTridentEntityL1
     }
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.none", true));
         return PlayState.CONTINUE;
     }
 

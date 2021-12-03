@@ -79,7 +79,7 @@ public class HellTridentEntityL3 extends HellTridentEntityL1
 
         Entity entity = this.getShooter();
         if ((this.dealtDamage || this.getNoClip()) && entity != null) {
-            int i = this.dataManager.get(LOYALTY_LEVEL);
+            int i = 3;
             if (i > 0 && !this.shouldReturnToThrower()) {
                 if (!this.world.isRemote && this.pickupStatus == AbstractArrowEntity.PickupStatus.ALLOWED) {
                     this.entityDropItem(this.getArrowStack(), 0.1F);
@@ -221,7 +221,7 @@ public class HellTridentEntityL3 extends HellTridentEntityL1
     }
 
     public void func_225516_i_() {
-        int i = this.dataManager.get(LOYALTY_LEVEL);
+        int i = 3;
         if (this.pickupStatus != AbstractArrowEntity.PickupStatus.ALLOWED || i <= 0) {
             super.func_225516_i_();
         }

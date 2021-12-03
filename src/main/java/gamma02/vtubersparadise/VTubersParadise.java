@@ -77,14 +77,14 @@ public class VTubersParadise
     public static final String ModID = "vtubersparadise";
     public static final DeferredRegister<Item> Items = DeferredRegister.create(ForgeRegistries.ITEMS, "vtubersparadise");
     public static final RegistryObject<Item> SLIME_SWORD_L1 = Items.register("slime_sword_l1", () -> new SlimeSwordL1(
-            ItemTier.NETHERITE, 6,  -2f,
+            ItemTier.NETHERITE, 1,  -2f,
             new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
     public static final RegistryObject<Item> SLIME_SWORD_L2 = Items.register("slime_sword_l2", () -> new SlimeSwordL2(
-            ItemTier.NETHERITE, 6, -1.5f,
+            ItemTier.NETHERITE, 2, -1.4f,
             new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)
     ));
     public static final RegistryObject<Item> SLIME_SWORD_L3 = Items.register("slime_sword_l3", () -> new SlimeSwordL3(
-            ItemTier.NETHERITE, 6, -1.5f,
+            ItemTier.NETHERITE, 4, -1.6f,
             new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)
     ));
     public static final RegistryObject<Item> HELL_TRIDENT_L1 = Items.register("hell_trident_l1", () -> new HellTridentL1(new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
@@ -108,22 +108,22 @@ public class VTubersParadise
 
 
     public static final RegistryObject<Item> ASTRO_SCYTHE_L1 = Items.register("astro_scythe_l1", () -> new AstroScytheL1(
-            ItemTier.NETHERITE, 5, 1f,
+            ItemTier.NETHERITE, 5, -1f,
             new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
     public static final RegistryObject<Item> ASTRO_SCYTHE_L2 = Items.register("astro_scythe_l2", () -> new AstroScytheL2(
-            ItemTier.NETHERITE, 8, 1.5f,
+            ItemTier.NETHERITE, 8, -1.2f,
             new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
     public static final RegistryObject<Item> ASTRO_SCYTHE_L3 = Items.register("astro_scythe_l3", () -> new AstroScytheL3(
-            ItemTier.NETHERITE, 11, 1.5f,
+            ItemTier.NETHERITE, 11, -1.5f,
             new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
     public static final RegistryObject<Item> FIRE_KATANA_L1 = Items.register("fire_katana_l1", () -> new FireKatanaL1(
-            ItemTier.NETHERITE, 3, 1.5f,
+            ItemTier.NETHERITE, 3, -1.5f,
             new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
     public static final RegistryObject<Item> FIRE_KATANA_L2 = Items.register("fire_katana_l2", () -> new FireKatanaL2(
-            ItemTier.NETHERITE, 6, 1.5f,
+            ItemTier.NETHERITE, 6, -1.5f,
             new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
     public static final RegistryObject<Item> FIRE_KATANA_L3 = Items.register("fire_katana_l3", () -> new FireKatanaL3(
-            ItemTier.NETHERITE, 8, 1.5f,
+            ItemTier.NETHERITE, 8, -1.5f,
             new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
 
 
