@@ -33,7 +33,7 @@ public class SlimeSwordL2 extends SlimeSwordL1
                 hasIronIngots = true;
             }
         }
-        if(hasIronIngots && !world.isRemote && this.timer == 0)
+        if(hasIronIngots && !world.isRemote && !player1.getCooldownTracker().hasCooldown(player.getHeldItem(hand).getItem()))
         {
             SlimeballProjectile entity = new SlimeballProjectile(ModEntities.SLIMEBALL_PROJECTILE, player.getPositionVec().add(0, 1.8, 0), world, false, player1 );
             world.addEntity(entity);
@@ -43,7 +43,7 @@ public class SlimeSwordL2 extends SlimeSwordL1
             entity.setVelocity(vec.x, vec.y, vec.z);
             ItemStack stack2 = player1.inventory.getStackInSlot(player1.inventory.getSlotFor(Items.IRON_NUGGET.getDefaultInstance()));
             player1.inventory.getStackInSlot(player1.inventory.getSlotFor(Items.IRON_NUGGET.getDefaultInstance())).setCount(stack2.getCount()-1);
-            timer = 40;
+            player1.getCooldownTracker().setCooldown(player1.getHeldItem(hand).getItem(), 20);
         }
         if(hasIronIngots){
 
