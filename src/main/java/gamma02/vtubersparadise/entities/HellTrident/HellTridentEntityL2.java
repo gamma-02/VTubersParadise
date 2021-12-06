@@ -54,7 +54,7 @@ public class HellTridentEntityL2 extends HellTridentEntityL1
     public HellTridentEntityL2(World worldIn, LivingEntity thrower, ItemStack thrownStackIn) {
         super(worldIn, thrower, thrownStackIn);
         this.thrownStack = thrownStackIn.copy();
-        this.dataManager.set(LOYALTY_LEVEL, (byte) 3);
+        this.dataManager.set(LOYALTY_LEVEL, (byte) 0);
         this.dataManager.set(field_226571_aq_, thrownStackIn.hasEffect());
     }
 
@@ -67,7 +67,7 @@ public class HellTridentEntityL2 extends HellTridentEntityL1
 
     protected void registerData() {
         super.registerData();
-        this.dataManager.register(LOYALTY_LEVEL, (byte)3);
+        this.dataManager.register(LOYALTY_LEVEL, (byte)0);
         this.dataManager.register(field_226571_aq_, false);
     }
 
@@ -139,7 +139,9 @@ public class HellTridentEntityL2 extends HellTridentEntityL1
      * Called when the arrow hits an entity
      */
     protected void onEntityHit(EntityRayTraceResult result) {
-
+        if(result.getEntity().world.isThundering()){
+            result.getEntity().world.addEntity(new LightningBoltEntity(EntityType.LIGHTNING_BOLT,result.getEntity().world ));
+        }
         Entity entity = result.getEntity();
         float f = 7.0F;
         if (entity instanceof LivingEntity) {
@@ -198,7 +200,7 @@ public class HellTridentEntityL2 extends HellTridentEntityL1
         }
 
         this.dealtDamage = compound.getBoolean("DealtDamage");
-        this.dataManager.set(LOYALTY_LEVEL, (byte)3);
+        this.dataManager.set(LOYALTY_LEVEL, (byte)0);
     }
 
     public void writeAdditional(CompoundNBT compound) {

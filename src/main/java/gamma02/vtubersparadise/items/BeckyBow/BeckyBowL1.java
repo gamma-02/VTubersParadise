@@ -134,7 +134,7 @@ public class BeckyBowL1 extends BowItem
              effects)
         {
             int chance = MathHelper.nextInt(new Random(), 0, 20);
-            if(chance <= 3 && element != null)
+            if(chance >= 6 && chance <=10  && element != null)
             {
                 entity.addEffect(element);
             }
