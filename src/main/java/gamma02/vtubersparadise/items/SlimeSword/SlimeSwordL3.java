@@ -48,8 +48,11 @@ public class SlimeSwordL3 extends SlimeSwordL1
 
                 entity.setVelocity(vec.x, vec.y, vec.z);
                 ItemStack stack2 = player1.inventory.getStackInSlot(player1.inventory.getSlotFor(Items.IRON_NUGGET.getDefaultInstance()));
-                player1.inventory.getStackInSlot(player1.inventory.getSlotFor(Items.IRON_NUGGET.getDefaultInstance()))
-                        .setCount(stack2.getCount() - 1);
+                if(!player1.isCreative())
+                {
+                    player1.inventory.getStackInSlot(player1.inventory.getSlotFor(Items.IRON_NUGGET.getDefaultInstance()))
+                            .setCount(stack2.getCount() - 1);
+                }
                 player1.getCooldownTracker().setCooldown(player1.getHeldItem(hand).getItem(), 20);
             }
             if (hasIronIngots)
