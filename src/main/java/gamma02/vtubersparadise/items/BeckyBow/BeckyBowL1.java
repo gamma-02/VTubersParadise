@@ -45,7 +45,7 @@ public class BeckyBowL1 extends BowItem
 
     @Override public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft)
     {
-        if(entityLiving instanceof PlayerEntity && this.getUseDuration(stack) - timeLeft >= 20){
+        if(entityLiving instanceof PlayerEntity){
             PlayerEntity user = (PlayerEntity) entityLiving;
             boolean shouldFire = false;
             if(user.isCreative()){
@@ -72,8 +72,7 @@ public class BeckyBowL1 extends BowItem
                     Objects.requireNonNull(stack1.get(i2)).setCount(stack1.get(i2).getCount() - 1);
                 }
                 ArrowEntity entity = new ArrowEntity(worldIn, entityLiving);
-                Vector3d vec = entityLiving.getLookVec().mul(2, 2, 2);
-                entity.setVelocity(vec.x, vec.y, vec.z);
+                entity.setDirectionAndMovement(entity, entityLiving.rotationPitch, entityLiving.rotationYaw, 0.0f, BowItem.getArrowVelocity(this.getUseDuration(this.getDefaultInstance()) -timeLeft)*3.0f, 1.0f);
                 if(this.level == 2){
                     entity.setDamage(8);
                 }else if(this.level == 3){

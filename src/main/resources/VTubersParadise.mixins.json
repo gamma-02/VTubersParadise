@@ -3,9 +3,8 @@
   "minVersion": "0.8",
   "package": "gamma02.vtubersparadise.mixin",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "VTubersParadise.refmap.json",
+  "refmap": "vtubersparadise.refmap.json",
   "mixins": [
-
   ],
   "injectors": {
     "defaultRequire": 1
