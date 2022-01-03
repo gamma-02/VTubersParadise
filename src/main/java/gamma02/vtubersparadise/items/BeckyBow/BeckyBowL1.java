@@ -1,6 +1,5 @@
 package gamma02.vtubersparadise.items.BeckyBow;
 
-import jdk.nashorn.internal.ir.Block;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;

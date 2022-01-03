@@ -4,10 +4,9 @@ import gamma02.vtubersparadise.items.IExtendedReach;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.SwordItem;
+import net.minecraft.item.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeMod;
 
@@ -16,6 +15,7 @@ import java.util.Objects;
 
 public class AstroScytheL1 extends SwordItem implements IExtendedReach
 {
+
     public AstroScytheL1(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builderIn)
     {
         super(tier, attackDamageIn, attackSpeedIn, builderIn);
@@ -26,6 +26,7 @@ public class AstroScytheL1 extends SwordItem implements IExtendedReach
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot,
             boolean isSelected)
     {
+
         if(entityIn instanceof PlayerEntity){
             PlayerEntity player = (PlayerEntity) entityIn;
 
@@ -38,14 +39,13 @@ public class AstroScytheL1 extends SwordItem implements IExtendedReach
             }
 
         }
+        super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
     @Override public double getCustomReach()
     {
         return 6;
     }
-
-
 
     @Override
     public boolean hitEntity( ItemStack stack, LivingEntity target, LivingEntity attacker)
@@ -56,6 +56,21 @@ public class AstroScytheL1 extends SwordItem implements IExtendedReach
             target.getHeldItemOffhand().setCount(0);
         }
         return true;
+    }
+
+    @Override public UseAction getUseAction(ItemStack stack)
+    {
+        return UseAction.BLOCK;
+    }
+    public int getUseDuration(ItemStack stack) {
+        return 72000;
+    }
+
+
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        ItemStack itemstack = playerIn.getHeldItem(handIn);
+        playerIn.setActiveHand(handIn);
+        return ActionResult.resultConsume(itemstack);
     }
 }
 

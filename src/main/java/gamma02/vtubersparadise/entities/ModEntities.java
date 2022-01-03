@@ -48,6 +48,7 @@ public class ModEntities
 
             event.getRegistry().registerAll(HELL_TRIDENT_ENTITY_L1, NEON_SWORD_ENTITY, ECHO_TRIDENT_ENTITY_L1, ECHO_TRIDENT_ENTITY_L2, HELL_TRIDENT_ENTITY_L2, HELL_TRIDENT_ENTITY_L3, ECHO_TRIDENT_ENTITY_L3, SLIMEBALL_PROJECTILE);
         }
+
     }
     private static <T extends Entity> EntityType<T> build(final String name, final EntityType.Builder<T> builder) {
         final ResourceLocation registryName = new ResourceLocation(VTubersParadise.ModID, name);

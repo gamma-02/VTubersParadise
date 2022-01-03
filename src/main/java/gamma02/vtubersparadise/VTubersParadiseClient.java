@@ -32,4 +32,5 @@ public class VTubersParadiseClient
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.ECHO_TRIDENT_ENTITY_L3, EchoTridentRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SLIMEBALL_PROJECTILE, (manager) -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));
     }
+
 }
