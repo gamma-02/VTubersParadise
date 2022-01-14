@@ -1,5 +1,8 @@
 package gamma02.vtubersparadise;
 
+import gamma02.vtubersparadise.blockEntities.StarterChestBlock;
+import gamma02.vtubersparadise.blockEntities.StarterChestBlockEntity;
+import gamma02.vtubersparadise.blockEntities.StarterChestBlockEntityRenderer;
 import gamma02.vtubersparadise.entities.HellTrident.*;
 import gamma02.vtubersparadise.entities.SlimeballProjectile;
 import gamma02.vtubersparadise.items.AstroScythe.AstroScytheL1;
@@ -31,6 +34,7 @@ import gamma02.vtubersparadise.items.SlimeSword.SlimeSwordL2;
 import gamma02.vtubersparadise.items.SlimeSword.SlimeSwordL3;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
@@ -43,7 +47,10 @@ import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemTier;
+import net.minecraft.loot.LootTable;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
@@ -51,6 +58,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -61,6 +69,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -68,6 +77,7 @@ import org.lwjgl.system.CallbackI;
 import software.bernie.example.client.renderer.entity.ExampleGeoRenderer;
 import software.bernie.example.registry.EntityRegistry;
 
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -77,6 +87,7 @@ public class VTubersParadise
 
 
     // Directly reference a log4j logger.
+    public static TileEntityType<StarterChestBlockEntity> STARTER_CHEST_TYPE;
     private static final Logger LOGGER = LogManager.getLogger();
     public static final String ModID = "vtubersparadise";
     public static final DeferredRegister<Item> Items = DeferredRegister.create(ForgeRegistries.ITEMS, "vtubersparadise");
@@ -109,6 +120,8 @@ public class VTubersParadise
     public static final RegistryObject<Item> DISDEERS_CLAWS_L1 = Items.register("disdeers_claws_l1", () -> new DisdeersClawsL1(ItemTier.NETHERITE, -2, -2.2f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
     public static final RegistryObject<Item> DISDEERS_CLAWS_L2 = Items.register("disdeers_claws_l2", () -> new DisdeersClawsL2(ItemTier.NETHERITE, 0, -2f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
     public static final RegistryObject<Item> DISDEERS_CLAWS_L3 = Items.register("disdeers_claws_l3", () -> new DisdeersClawsL3(ItemTier.NETHERITE, 2, -2f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT).maxStackSize(1)));
+    public static final DeferredRegister<Block> ModBlocks = DeferredRegister.create(Block.class, ModID);
+    public static final RegistryObject<Block> STARTER_CHEST_BLOCK = ModBlocks.register("starter_chest_block", () -> new StarterChestBlock(AbstractBlock.Properties.from(Blocks.CHEST)));
 
 
     public static final RegistryObject<Item> ASTRO_SCYTHE_L1 = Items.register("astro_scythe_l1", () -> new AstroScytheL1(
@@ -129,7 +142,6 @@ public class VTubersParadise
     public static final RegistryObject<Item> FIRE_KATANA_L3 = Items.register("fire_katana_l3", () -> new FireKatanaL3(
             ItemTier.NETHERITE, 3, -2.1f,
             new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
-
 
 //    public static final RegistryObject<EntityType<HellTridentEntityL2>> HELL_TRIDENT_ENTITY_L2 = EntityType.register("hell_trident_entity_l2", () -> net.minecraft.entity.EntityType.Builder.<HellTridentEntityL2>create(HellTridentEntityL2::new, EntityClassification.AMBIENT).size(0.5F, 0.9F).build("vtubersparadise"));
 //    public static final RegistryObject<EntityType<HellTridentEntityL3>> HELL_TRIDENT_ENTITY_L3 = EntityType.register("hell_trident_entity_l3", () -> net.minecraft.entity.EntityType.Builder.<HellTridentEntityL3>create(HellTridentEntityL3::new, EntityClassification.AMBIENT).size(0.5F, 0.9F).build("vtubersparadise"));
@@ -171,6 +183,7 @@ public class VTubersParadise
     {
         // do something that can only be done on the client
         LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
+        ClientRegistry.bindTileEntityRenderer(STARTER_CHEST_TYPE, StarterChestBlockEntityRenderer::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
@@ -204,6 +217,10 @@ public class VTubersParadise
         {
             // register a new block here
             LOGGER.info("HELLO from Register Block");
+        }
+
+        @SubscribeEvent public static void onTileRegistry(final RegistryEvent.Register<TileEntityType<?>> evt){
+            STARTER_CHEST_TYPE = TileEntityType.Builder.<StarterChestBlockEntity>create(StarterChestBlockEntity::new, (VTubersParadise.STARTER_CHEST_BLOCK.get())).build(null);
         }
     }
 

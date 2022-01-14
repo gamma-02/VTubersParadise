@@ -1,0 +1,54 @@
+{
+  "pools": [
+    {
+      "rolls": 9,
+      "entries": [
+
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "vtubersparadise:slime_sword_l1"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "vtubersparadise:fire_katana_l1"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "vtubersparadise:astro_scythe_l1"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "vtubersparadise:disdeers_claws_l1"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "vtubersparadise:becky_bow_l1"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "vtubersparadise:shine_sword_l1"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "vtubersparadise:echo_trident_l1"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "vtubersparadise:hell_trident_l1"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "vtubersparadise:neon_blade_l1"
+        }
+      ]
+    }
+  ]
+}

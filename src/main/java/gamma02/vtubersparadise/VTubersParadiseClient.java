@@ -9,6 +9,7 @@ import gamma02.vtubersparadise.entities.NeonSwordEntity.NeonSpearRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.client.renderer.entity.TridentRenderer;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.Event;
@@ -31,6 +32,10 @@ public class VTubersParadiseClient
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.ECHO_TRIDENT_ENTITY_L2, EchoTridentRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.ECHO_TRIDENT_ENTITY_L3, EchoTridentRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SLIMEBALL_PROJECTILE, (manager) -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));
+
     }
+
+
+
 
 }
