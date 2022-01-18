@@ -6,6 +6,7 @@
   "refmap": "vtubersparadise.refmap.json",
   "mixins": [
     "itemStackMixin",
+    "ServerPlayerMixin",
     "ServerWorldMixin"
   ],
   "injectors": {

@@ -3,6 +3,7 @@ package gamma02.vtubersparadise.blockEntities;
 import gamma02.vtubersparadise.VTubersParadise;
 import gamma02.vtubersparadise.VTubersParadiseClient;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.ChestBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -17,25 +18,30 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.properties.ChestType;
 import net.minecraft.tileentity.*;
 import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.system.CallbackI;
 
 import javax.annotation.Nonnull;
+import java.util.HashMap;
 import java.util.List;
 
-public class StarterChestBlockEntity extends LockableLootTileEntity implements IChestLid, ITickableTileEntity {
+public class StarterChestBlockEntity extends ChestTileEntity implements IChestLid, ITickableTileEntity {
     /** The current angle of the lid (between 0 and 1) */
     protected float lidAngle;
     /** The angle of the lid last tick */
     protected float prevLidAngle;
     private int ticksSinceSync;
     private int numPlayersUsing;
+    private boolean isEmpty;
     private boolean dirty = false;
 
+    public static HashMap<BlockPos, StarterChestBlockEntity> blockEntities = new HashMap<>();
+
     public static NonNullList<ItemStack> Inventory = NonNullList.withSize(18, ItemStack.EMPTY);
-    private static IInventory otherInventory = new IInventory() {
+    public static IInventory otherInventory = new IInventory() {
 
 
         @Override
@@ -60,7 +66,7 @@ public class StarterChestBlockEntity extends LockableLootTileEntity implements I
         }
 
         @Override
-        public ItemStack removeStackFromSlot(int index) {
+        public @NotNull ItemStack removeStackFromSlot(int index) {
             ItemStack stack = Inventory.get(index);
             if(!stack.isEmpty()) {
                 Inventory.set(index, ItemStack.EMPTY);
@@ -82,15 +88,20 @@ public class StarterChestBlockEntity extends LockableLootTileEntity implements I
 
         @Override
         public boolean isUsableByPlayer(PlayerEntity player) {
-            boolean output = true;
-            for (ItemStack element:
-                 player.inventory.mainInventory) {
-                if(element.getItem().getCreatorModId(element) == VTubersParadise.ModID){
-                    output = false;
-                }
-            }
-            return output;
+//            boolean output = true;
+//            for (ItemStack element:
+//                 player.inventory.mainInventory) {
+//                if(element.getItem().getCreatorModId(element) == VTubersParadise.ModID){
+//                    output = false;
+//                }
+//            }
+//            return output;
+            return true;
+
         }
+
+
+
 
         @Override
         public void clear() {
@@ -100,12 +111,22 @@ public class StarterChestBlockEntity extends LockableLootTileEntity implements I
 
     public StarterChestBlockEntity(TileEntityType<?> typeIn) {
         super(typeIn);
+        blockEntities.put(this.pos, this);
     }
     public StarterChestBlockEntity(){
         super(VTubersParadise.STARTER_CHEST_TYPE);
+
     }
 
+    @Override
+    public @NotNull TileEntityType<?> getType() {
+        return VTubersParadise.STARTER_CHEST_TYPE;
+    }
 
+    @Override
+    public boolean isEmpty() {
+        return isEmpty;
+    }
 
     @Override
     protected @NotNull NonNullList<ItemStack> getItems() {
@@ -124,13 +145,14 @@ public class StarterChestBlockEntity extends LockableLootTileEntity implements I
 
     @Override
     protected @NotNull Container createMenu(int id, @Nonnull PlayerInventory player) {
-        return new ChestContainer(ContainerType.GENERIC_9X1, id, player, otherInventory, 2);
+        return new ChestContainer(ContainerType.GENERIC_9X2, id, player, otherInventory, 2);
     }
 
     @Override
     public int getSizeInventory() {
         return 18;
     }
+
 
     @Override
     public float getLidAngle(float partialTicks) {
@@ -146,8 +168,12 @@ public class StarterChestBlockEntity extends LockableLootTileEntity implements I
 
     }
 
-    public CompoundNBT write(CompoundNBT compound) {
-        super.write(compound);
+    public @NotNull CompoundNBT write(@NotNull CompoundNBT compound) {
+
+
+
+
+
         if (!this.checkLootAndWrite(compound)) {
             ItemStackHelper.saveAllItems(compound, Inventory);
         }
@@ -156,6 +182,17 @@ public class StarterChestBlockEntity extends LockableLootTileEntity implements I
     }
 
     public void tick() {
+
+
+        if(Inventory.stream().allMatch(ItemStack::isEmpty)){
+            this.isEmpty = true;
+        }else {
+            this.isEmpty = false;
+        }
+
+        if (this.world != null && this.isEmpty && !this.world.isRemote) {
+            world.setBlockState(this.pos, Blocks.AIR.getDefaultState());
+        }
         if(this.dirty){
 
             this.dirty = false;

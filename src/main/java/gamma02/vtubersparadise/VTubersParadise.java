@@ -40,6 +40,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.SpriteRenderer;
+import net.minecraft.client.renderer.tileentity.ChestTileEntityRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -160,6 +161,7 @@ public class VTubersParadise
 
         // Register ourselves for server and other game events we are interested in
         Items.register(FMLJavaModLoadingContext.get().getModEventBus());
+        ModBlocks.register(FMLJavaModLoadingContext.get().getModEventBus());
         MinecraftForge.EVENT_BUS.register(this);
 
     }
@@ -220,7 +222,8 @@ public class VTubersParadise
         }
 
         @SubscribeEvent public static void onTileRegistry(final RegistryEvent.Register<TileEntityType<?>> evt){
-            STARTER_CHEST_TYPE = TileEntityType.Builder.<StarterChestBlockEntity>create(StarterChestBlockEntity::new, (VTubersParadise.STARTER_CHEST_BLOCK.get())).build(null);
+            STARTER_CHEST_TYPE = TileEntityType.Builder.create(StarterChestBlockEntity::new, (VTubersParadise.STARTER_CHEST_BLOCK.get())).build(null);
+            STARTER_CHEST_TYPE.setRegistryName(new ResourceLocation(ModID, "starter_chest_type"));
         }
     }
 
