@@ -147,7 +147,7 @@ public class VTubersParadise
             new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
 
     public static final RegistryObject<Item> ELECTROSPEAR = Items.register("adepts_electrospear", () -> new ElectroSpear(
-            new Item.Properties().group(ItemGroup.COMBAT).isImmuneToFire()
+            new Item.Properties().group(ItemGroup.COMBAT).isImmuneToFire().maxStackSize(1)
     ));
 
     public static final RegistryObject<Item> BOSS = Items.register("boss", () -> new BossItem(ItemTier.NETHERITE, 7, -2.7f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));

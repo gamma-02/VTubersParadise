@@ -37,7 +37,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class Renderer extends GeoProjectilesRenderer<HellTridentEntityL1> {
-    public static final ResourceLocation TRIDENT = new ResourceLocation(VTubersParadise.ModID, "textures/item/soda1.png");
+    public static final ResourceLocation TRIDENT = new ResourceLocation(VTubersParadise.ModID, "textures/item/soda/soda1.png");
     private static final HellTridentModel tridentModel = new HellTridentModel();
 
     public Renderer(EntityRendererManager renderManagerIn) {

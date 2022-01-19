@@ -9,12 +9,12 @@ public class NeonSwordModel extends AnimatedGeoModel<NeonSwordEntity>
 
     @Override public ResourceLocation getModelLocation(NeonSwordEntity object)
     {
-        return new ResourceLocation(VTubersParadise.ModID, "geo/neonsword.geo.json");
+        return new ResourceLocation(VTubersParadise.ModID, "geo/pixelcat.geo.json");
     }
 
     @Override public ResourceLocation getTextureLocation(NeonSwordEntity object)
     {
-        return new ResourceLocation(VTubersParadise.ModID, "textures/item/pixel1.png");
+        return new ResourceLocation(VTubersParadise.ModID, "textures/item/pixelcat/pixel1.png");
     }
 
     @Override public ResourceLocation getAnimationFileLocation(NeonSwordEntity animatable)
