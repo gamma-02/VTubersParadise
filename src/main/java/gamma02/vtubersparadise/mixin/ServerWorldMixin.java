@@ -47,12 +47,12 @@ public abstract class ServerWorldMixin extends World implements SussyBakaUwu {
     @Inject(method = "tick", at = @At("HEAD"))
     public void tickMixin(BooleanSupplier j, CallbackInfo ci){
 
-        if(this.isAreaLoaded(this.getSpawnPoint(), 1) && !this.loaded){
-            StartingChestFeature generate = new StartingChestFeature(NoFeatureConfig.CODEC);
-            generate.generate(((ISeedReader) this), (this.getChunkProvider().generator), new Random(), this.getServer().func_241755_D_().getSpawnPoint(), NoFeatureConfig.INSTANCE);
-            this.loaded = true;
-
-        }
+//        if(this.isAreaLoaded(this.getSpawnPoint(), 1) && !this.loaded){
+//            StartingChestFeature generate = new StartingChestFeature(NoFeatureConfig.CODEC);
+//            generate.generate(((ISeedReader) this), (this.getChunkProvider().generator), new Random(), this.getServer().func_241755_D_().getSpawnPoint(), NoFeatureConfig.INSTANCE);
+//            this.loaded = true;
+//
+//        }
     }
 
 

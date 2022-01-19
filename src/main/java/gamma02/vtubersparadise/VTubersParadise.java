@@ -17,6 +17,7 @@ import gamma02.vtubersparadise.items.DisdeersClaws.DisdeersClawsL3;
 import gamma02.vtubersparadise.items.EchoTrident.EchoTridentL1;
 import gamma02.vtubersparadise.items.EchoTrident.EchoTridentL2;
 import gamma02.vtubersparadise.items.EchoTrident.EchoTridentL3;
+import gamma02.vtubersparadise.items.ElectroSpear.ElectroSpear;
 import gamma02.vtubersparadise.items.FireKatana.FireKatanaL1;
 import gamma02.vtubersparadise.items.FireKatana.FireKatanaL2;
 import gamma02.vtubersparadise.items.FireKatana.FireKatanaL3;
@@ -32,6 +33,7 @@ import gamma02.vtubersparadise.items.ShineSword.ShineSwordL3;
 import gamma02.vtubersparadise.items.SlimeSword.SlimeSwordL1;
 import gamma02.vtubersparadise.items.SlimeSword.SlimeSwordL2;
 import gamma02.vtubersparadise.items.SlimeSword.SlimeSwordL3;
+import gamma02.vtubersparadise.items.boss.BossItem;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import net.minecraft.block.AbstractBlock;
@@ -143,6 +145,12 @@ public class VTubersParadise
     public static final RegistryObject<Item> FIRE_KATANA_L3 = Items.register("fire_katana_l3", () -> new FireKatanaL3(
             ItemTier.NETHERITE, 3, -2.1f,
             new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
+
+    public static final RegistryObject<Item> ELECTROSPEAR = Items.register("adepts_electrospear", () -> new ElectroSpear(
+            new Item.Properties().group(ItemGroup.COMBAT).isImmuneToFire()
+    ));
+
+    public static final RegistryObject<Item> BOSS = Items.register("boss", () -> new BossItem(ItemTier.NETHERITE, 7, -2.7f, new Item.Properties().isImmuneToFire().group(ItemGroup.COMBAT)));
 
 //    public static final RegistryObject<EntityType<HellTridentEntityL2>> HELL_TRIDENT_ENTITY_L2 = EntityType.register("hell_trident_entity_l2", () -> net.minecraft.entity.EntityType.Builder.<HellTridentEntityL2>create(HellTridentEntityL2::new, EntityClassification.AMBIENT).size(0.5F, 0.9F).build("vtubersparadise"));
 //    public static final RegistryObject<EntityType<HellTridentEntityL3>> HELL_TRIDENT_ENTITY_L3 = EntityType.register("hell_trident_entity_l3", () -> net.minecraft.entity.EntityType.Builder.<HellTridentEntityL3>create(HellTridentEntityL3::new, EntityClassification.AMBIENT).size(0.5F, 0.9F).build("vtubersparadise"));

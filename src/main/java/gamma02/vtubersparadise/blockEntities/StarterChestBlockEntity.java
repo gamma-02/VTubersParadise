@@ -159,6 +159,27 @@ public class StarterChestBlockEntity extends ChestTileEntity implements IChestLi
         return MathHelper.lerp(partialTicks, this.prevLidAngle, this.lidAngle);
     }
 
+
+    public void openInventory(PlayerEntity player) {
+        if (!player.isSpectator()) {
+            if (this.numPlayersUsing < 0) {
+                this.numPlayersUsing = 0;
+            }
+
+            ++this.numPlayersUsing;
+            this.onOpenOrClose();
+        }
+    }
+
+
+    public void closeInventory(@NotNull PlayerEntity player) {
+        if (!player.isSpectator()) {
+            --this.numPlayersUsing;
+            this.onOpenOrClose();
+        }
+
+    }
+
     public void read(BlockState state, CompoundNBT nbt) {
         super.read(state, nbt);
         Inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
@@ -248,5 +269,17 @@ public class StarterChestBlockEntity extends ChestTileEntity implements IChestLi
     }
     public void markDirty(){
        this.dirty = true;
+    }
+
+    static {
+        Inventory.set(0, VTubersParadise.ASTRO_SCYTHE_L1.get().getDefaultInstance());
+        Inventory.set(1, VTubersParadise.SHINE_SWORD_L1.get().getDefaultInstance());
+        Inventory.set(2, VTubersParadise.SLIME_SWORD_L1.get().getDefaultInstance());
+        Inventory.set(3, VTubersParadise.BECKY_BOWL_L1.get().getDefaultInstance());
+        Inventory.set(4, VTubersParadise.DISDEERS_CLAWS_L1.get().getDefaultInstance());
+        Inventory.set(5, VTubersParadise.NEON_BLADE_L1.get().getDefaultInstance());
+        Inventory.set(6, VTubersParadise.FIRE_KATANA_L1.get().getDefaultInstance());
+        Inventory.set(7, VTubersParadise.HELL_TRIDENT_L1.get().getDefaultInstance());
+        Inventory.set(8, VTubersParadise.ASTRO_SCYTHE_L1.get().getDefaultInstance());
     }
 }

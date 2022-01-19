@@ -4,6 +4,7 @@ import gamma02.vtubersparadise.VTubersParadise;
 import gamma02.vtubersparadise.entities.EchoTrident.EchoTridentEntityL1;
 import gamma02.vtubersparadise.entities.EchoTrident.EchoTridentEntityL2;
 import gamma02.vtubersparadise.entities.EchoTrident.EchoTridentEntityL3;
+import gamma02.vtubersparadise.entities.ElectroTridentEntity.ElectroTridentEntity;
 import gamma02.vtubersparadise.entities.HellTrident.HellTridentEntityL1;
 import gamma02.vtubersparadise.entities.HellTrident.HellTridentEntityL2;
 import gamma02.vtubersparadise.entities.HellTrident.HellTridentEntityL3;
@@ -29,6 +30,7 @@ public class ModEntities
     public static EntityType<HellTridentEntityL3> HELL_TRIDENT_ENTITY_L3 = null;
     public static EntityType<EchoTridentEntityL3> ECHO_TRIDENT_ENTITY_L3 = null;
     public static EntityType<SlimeballProjectile> SLIMEBALL_PROJECTILE = null;
+    public static EntityType<ElectroTridentEntity> ELECTRO_TRIDENT_ENTITY = null;
 
     @Mod.EventBusSubscriber(modid = VTubersParadise.ModID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistrationHandler {
@@ -44,9 +46,10 @@ public class ModEntities
             HELL_TRIDENT_ENTITY_L2 = build("hell_trident_entity_l2", EntityType.Builder.<HellTridentEntityL2>create(HellTridentEntityL2::new, EntityClassification.MISC).size(EntityType.TRIDENT.getWidth(), EntityType.TRIDENT.getHeight()).setShouldReceiveVelocityUpdates(true).setUpdateInterval(120));
             HELL_TRIDENT_ENTITY_L3 = build("hell_trident_entity_l3", EntityType.Builder.<HellTridentEntityL3>create(HellTridentEntityL3::new, EntityClassification.MISC).size(EntityType.TRIDENT.getWidth(), EntityType.TRIDENT.getHeight()).setShouldReceiveVelocityUpdates(true).setUpdateInterval(120));
             ECHO_TRIDENT_ENTITY_L3 = build("echo_trident_entity_l3", EntityType.Builder.<EchoTridentEntityL3>create(EchoTridentEntityL3::new, EntityClassification.MISC).size(EntityType.TRIDENT.getWidth(), EntityType.TRIDENT.getHeight()).setShouldReceiveVelocityUpdates(true).setUpdateInterval(120));
+            ELECTRO_TRIDENT_ENTITY = build("electro_trident_entity", EntityType.Builder.<ElectroTridentEntity>create(ElectroTridentEntity::new, EntityClassification.MISC).size(EntityType.TRIDENT.getWidth(), EntityType.TRIDENT.getHeight()).setShouldReceiveVelocityUpdates(true).setUpdateInterval(120));
             SLIMEBALL_PROJECTILE = build("slimeball_projectile", EntityType.Builder.<SlimeballProjectile>create(SlimeballProjectile::new, EntityClassification.AMBIENT).size(0.5F, 0.9F));
 
-            event.getRegistry().registerAll(HELL_TRIDENT_ENTITY_L1, NEON_SWORD_ENTITY, ECHO_TRIDENT_ENTITY_L1, ECHO_TRIDENT_ENTITY_L2, HELL_TRIDENT_ENTITY_L2, HELL_TRIDENT_ENTITY_L3, ECHO_TRIDENT_ENTITY_L3, SLIMEBALL_PROJECTILE);
+            event.getRegistry().registerAll(HELL_TRIDENT_ENTITY_L1, NEON_SWORD_ENTITY, ECHO_TRIDENT_ENTITY_L1, ECHO_TRIDENT_ENTITY_L2, HELL_TRIDENT_ENTITY_L2, HELL_TRIDENT_ENTITY_L3, ECHO_TRIDENT_ENTITY_L3, SLIMEBALL_PROJECTILE, ELECTRO_TRIDENT_ENTITY);
         }
 
     }

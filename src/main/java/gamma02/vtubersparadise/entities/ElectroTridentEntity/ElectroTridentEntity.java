@@ -1,5 +1,6 @@
 package gamma02.vtubersparadise.entities.ElectroTridentEntity;
 
+import gamma02.vtubersparadise.entities.ModEntities;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -11,6 +12,7 @@ import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -24,6 +26,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
@@ -31,32 +35,30 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nullable;
 
 public class ElectroTridentEntity extends AbstractArrowEntity implements IAnimatable {
-    private static final DataParameter<Byte> LOYALTY_LEVEL = EntityDataManager.createKey(net.minecraft.entity.projectile.TridentEntity.class, DataSerializers.BYTE);
-    private static final DataParameter<Boolean> field_226571_aq_ = EntityDataManager.createKey(net.minecraft.entity.projectile.TridentEntity.class, DataSerializers.BOOLEAN);
+    private static final int LOYALTY_LEVEL = 3;
     private ItemStack thrownStack = new ItemStack(Items.TRIDENT);
     private boolean dealtDamage;
     public int returningTicks;
+    private AnimationFactory factory = new AnimationFactory(this);
 
-    public ElectroTridentEntity(EntityType<? extends net.minecraft.entity.projectile.TridentEntity> type, World worldIn) {
+    public ElectroTridentEntity(EntityType<? extends ElectroTridentEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
     public ElectroTridentEntity(World worldIn, LivingEntity thrower, ItemStack thrownStackIn) {
-        super(EntityType.TRIDENT, thrower, worldIn);
+        super(ModEntities.ELECTRO_TRIDENT_ENTITY, thrower, worldIn);
         this.thrownStack = thrownStackIn.copy();
-        this.dataManager.set(LOYALTY_LEVEL, (byte) EnchantmentHelper.getLoyaltyModifier(thrownStackIn));
-        this.dataManager.set(field_226571_aq_, thrownStackIn.hasEffect());
     }
 
     @OnlyIn(Dist.CLIENT)
     public ElectroTridentEntity(World worldIn, double x, double y, double z) {
-        super(EntityType.TRIDENT, x, y, z, worldIn);
+        super(ModEntities.ELECTRO_TRIDENT_ENTITY, x, y, z, worldIn);
     }
+
+
 
     protected void registerData() {
         super.registerData();
-        this.dataManager.register(LOYALTY_LEVEL, (byte)0);
-        this.dataManager.register(field_226571_aq_, false);
     }
 
     /**
@@ -69,7 +71,7 @@ public class ElectroTridentEntity extends AbstractArrowEntity implements IAnimat
 
         Entity entity = this.getShooter();
         if ((this.dealtDamage || this.getNoClip()) && entity != null) {
-            int i = this.dataManager.get(LOYALTY_LEVEL);
+            int i = LOYALTY_LEVEL;
             if (i > 0 && !this.shouldReturnToThrower()) {
                 if (!this.world.isRemote && this.pickupStatus == AbstractArrowEntity.PickupStatus.ALLOWED) {
                     this.entityDropItem(this.getArrowStack(), 0.1F);
@@ -110,10 +112,7 @@ public class ElectroTridentEntity extends AbstractArrowEntity implements IAnimat
         return this.thrownStack.copy();
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public boolean func_226572_w_() {
-        return this.dataManager.get(field_226571_aq_);
-    }
+
 
     /**
      * Gets the EntityRayTraceResult representing the entity hit
@@ -198,7 +197,6 @@ public class ElectroTridentEntity extends AbstractArrowEntity implements IAnimat
         }
 
         this.dealtDamage = compound.getBoolean("DealtDamage");
-        this.dataManager.set(LOYALTY_LEVEL, (byte)EnchantmentHelper.getLoyaltyModifier(this.thrownStack));
     }
 
     public void writeAdditional(CompoundNBT compound) {
@@ -208,8 +206,7 @@ public class ElectroTridentEntity extends AbstractArrowEntity implements IAnimat
     }
 
     public void func_225516_i_() {
-        int i = this.dataManager.get(LOYALTY_LEVEL);
-        if (this.pickupStatus != AbstractArrowEntity.PickupStatus.ALLOWED || i <= 0) {
+        if (this.pickupStatus != AbstractArrowEntity.PickupStatus.ALLOWED) {
             super.func_225516_i_();
         }
 
@@ -228,10 +225,14 @@ public class ElectroTridentEntity extends AbstractArrowEntity implements IAnimat
     public void registerControllers(AnimationData data) {
 
     }
+    @Override
+    public @NotNull IPacket<?> createSpawnPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
+    }
 
     @Override
     public AnimationFactory getFactory() {
-        return null;
+        return this.factory;
     }
 }
 
