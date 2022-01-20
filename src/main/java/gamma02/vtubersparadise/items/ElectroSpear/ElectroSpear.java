@@ -4,8 +4,10 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import gamma02.vtubersparadise.entities.ElectroTridentEntity.ElectroTridentEntity;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.IVanishable;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.ai.attributes.Attribute;
@@ -23,6 +25,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ItemTextureQuadConverter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
@@ -42,6 +45,15 @@ public class ElectroSpear extends Item implements IVanishable
 
     public boolean canPlayerBreakBlockWhileHolding(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
         return !player.isCreative();
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+//        if(isSelected && entityIn instanceof PlayerEntity){
+//            ((PlayerEntity) entityIn).addPotionEffect(new EffectInstance(Effects.HASTE, 2, 0, true, false, true));
+//        }
+
+        super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
     /**
@@ -185,5 +197,11 @@ public class ElectroSpear extends Item implements IVanishable
     @Override
     public boolean canHarvestBlock(BlockState blockIn) {
         return blockIn.getHarvestLevel() <= ItemTier.IRON.getHarvestLevel();
+    }
+
+    @Override
+    public float getDestroySpeed(ItemStack stack, BlockState state) {
+        Material material = state.getMaterial();
+        return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getDestroySpeed(stack, state) : ItemTier.IRON.getEfficiency();
     }
 }

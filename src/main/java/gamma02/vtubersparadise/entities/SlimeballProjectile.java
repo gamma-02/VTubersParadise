@@ -19,10 +19,17 @@ import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
+
+@OnlyIn(
+        value = Dist.CLIENT,
+        _interface = IRendersAsItem.class
+)
 public class SlimeballProjectile extends ThrowableEntity implements IRendersAsItem
 {
     private final boolean level2;

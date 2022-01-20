@@ -21,6 +21,8 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.system.CallbackI;
 
@@ -28,6 +30,11 @@ import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.List;
 
+
+@OnlyIn(
+        value = Dist.CLIENT,
+        _interface = IChestLid.class
+)
 public class StarterChestBlockEntity extends ChestTileEntity implements IChestLid, ITickableTileEntity {
     /** The current angle of the lid (between 0 and 1) */
     protected float lidAngle;
